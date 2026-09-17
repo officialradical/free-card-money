@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FREE CARD MONEY</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#070b12;color:#fff}
+header{padding:22px 18px;background:linear-gradient(135deg,#101a32,#071018);position:sticky;top:0;z-index:5}
+.logo{font-size:25px;font-weight:900;color:#35a7ff}.tag{color:#9aa8bb;margin-top:5px}
+nav{display:flex;gap:8px;margin-top:18px;overflow:auto}nav button{border:0;border-radius:12px;padding:11px 16px;background:#172235;color:#fff}
+.hero{padding:38px 20px;text-align:center;background:radial-gradient(circle at top,#123b61,#070b12 65%)}
+.hero h1{font-size:40px;margin:10px 0}.hero p{color:#b7c4d5;line-height:1.6}
+.container{max-width:900px;margin:auto;padding:20px}
+.notice{background:#102238;border:1px solid #245b86;padding:15px;border-radius:15px;margin-bottom:20px;color:#cde8ff}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:#101722;border:1px solid #243246;border-radius:18px;padding:22px;box-shadow:0 8px 30px #0005}
+.card h2{margin-top:0}.price{font-size:30px;font-weight:900;color:#42b5ff}.muted{color:#98a6b8}
+.buy{width:100%;padding:14px;border:0;border-radius:12px;background:#1688e8;color:#fff;font-size:16px;font-weight:bold;margin-top:15px}
+input{width:100%;padding:14px;margin:8px 0;background:#0a111c;border:1px solid #304057;border-radius:10px;color:#fff;font-size:15px}
+.panel{display:none}.panel.active{display:block}
+.steps{line-height:1.8}.order{background:#111c29;padding:18px;border-radius:15px;margin-top:15px}
+footer{text-align:center;padding:30px;color:#718096}
+.small{font-size:13px;color:#8795a8}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">FREE CARD MONEY</div>
+<div class="tag">Digital products • Simple ordering</div>
+<nav>
+<button onclick="show('home')">Home</button>
+<button onclick="show('shop')">Shop</button>
+<button onclick="show('payment')">Payment</button>
+<button onclick="show('orders')">Orders</button>
+</nav>
+</header>
+
+<section class="panel active" id="home">
+<div class="hero">
+<h1>Buy Digital Cards</h1>
+<p>Choose a product, place your order and pay securely through Telecel MoMo.</p>
+<button class="buy" onclick="show('shop')">SHOP NOW</button>
+</div>
+<div class="container">
+<div class="notice">
+<b>Important:</b> These are store-issued digital products. FREE CARD MONEY is not a bank and does not issue bank credit or debit cards.
+</div>
+<h2>How it works</h2>
+<div class="steps">
+1️⃣ Choose your product.<br>
+2️⃣ Enter your name and phone number.<br>
+3️⃣ Send the exact amount through Telecel MoMo.<br>
+4️⃣ Submit your transaction/reference number.<br>
+5️⃣ Your order remains <b>Pending verification</b> until payment is manually verified.
+</div>
+</div>
+</section>
+
+<section class="panel" id="shop">
+<div class="container">
+<h1>Shop</h1>
+<div class="products">
+
+<div class="card">
+<h2>Digital Card — Basic</h2>
+<p class="muted">Basic digital product</p>
+<div class="price">GH₵30</div>
+<button class="buy" onclick="buy('Digital Card — Basic',30)">BUY NOW</button>
+</div>
+
+<div class="card">
+<h2>Digital Card — Plus</h2>
+<p class="muted">Plus digital product</p>
+<div class="price">GH₵50</div>
+<button class="buy" onclick="buy('Digital Card — Plus',50)">BUY NOW</button>
+</div>
+
+<div class="card">
+<h2>Digital Card — Premium</h2>
+<p class="muted">Premium digital product</p>
+<div class="price">GH₵100</div>
+<button class="buy" onclick="buy('Digital Card — Premium',100)">BUY NOW</button>
+</div>
+
+</div>
+</div>
+</section>
+
+<section class="panel" id="payment">
+<div class="container">
+<h1>Complete Order</h1>
+<div class="card">
+<p>Product</p>
+<h2 id="productName">—</h2>
+<p>Amount</p>
+<div class="price" id="productPrice">GH₵0</div>
+
+<input id="customerName" placeholder="Your full name">
+<input id="customerPhone" placeholder="Your phone number">
+<input id="reference" placeholder="MoMo transaction/reference number">
+
+<div class="notice">
+<b>Telecel MoMo payment</b><br><br>
+Send the exact amount to:<br>
+<b>DUANE MANU</b><br>
+<b>020 842 4350</b><br>
+Network: <b>Telecel</b>
+</div>
+
+<button class="buy" onclick="submitOrder()">SUBMIT ORDER</button>
+<p class="small">Do not submit a false payment reference. Orders are verified before fulfillment.</p>
+</div>
+</div>
+</section>
+
+<section class="panel" id="orders">
+<div class="container">
+<h1>Your Order</h1>
+<div id="orderBox" class="order">
+No order submitted yet.
+</div>
+</div>
+</section>
+
+<footer>
+FREE CARD MONEY © 2026<br>
+<span class="small">Digital products storefront</span>
+</footer>
+
+<script>
+let selectedProduct="";
+let selectedPrice=0;
+
+function show(id){
+ document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ window.scrollTo(0,0);
+}
+
+function buy(name,price){
+ selectedProduct=name;
+ selectedPrice=price;
+ document.getElementById("productName").textContent=name;
+ document.getElementById("productPrice").textContent="GH₵"+price;
+ show("payment");
+}
+
+function submitOrder(){
+ let name=document.getElementById("customerName").value.trim();
+ let phone=document.getElementById("customerPhone").value.trim();
+ let ref=document.getElementById("reference").value.trim();
+
+ if(!name||!phone||!ref){
+   alert("Please complete all fields.");
+   return;
+ }
+
+ let order="FCM-"+Date.now().toString().slice(-8);
+
+ document.getElementById("orderBox").innerHTML=
+ "<h2>"+order+"</h2>"+
+ "<p><b>Product:</b> "+selectedProduct+"</p>"+
+ "<p><b>Amount:</b> GH₵"+selectedPrice+"</p>"+
+ "<p><b>Customer:</b> "+name+"</p>"+
+ "<p><b>Phone:</b> "+phone+"</p>"+
+ "<p><b>Reference:</b> "+ref+"</p>"+
+ "<p><b>Status:</b> 🟡 Pending verification</p>"+
+ "<div class='notice'>Payment must be verified before the order is fulfilled.</div>";
+
+ localStorage.setItem("fcmOrder",document.getElementById("orderBox").innerHTML);
+ show("orders");
+}
+</script>
+
+</body>
+</html>
