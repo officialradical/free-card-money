@@ -4,35 +4,51 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FREE CARD MONEY</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#070b12;color:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#070b12;color:#fff}
 header{padding:22px 18px;background:linear-gradient(135deg,#101a32,#071018);position:sticky;top:0;z-index:5}
-.logo{font-size:25px;font-weight:900;color:#35a7ff}.tag{color:#9aa8bb;margin-top:5px}
-nav{display:flex;gap:8px;margin-top:18px;overflow:auto}nav button{border:0;border-radius:12px;padding:11px 16px;background:#172235;color:#fff}
+.logo{font-size:25px;font-weight:900;color:#35a7ff}
+.tag{color:#9aa8bb;margin-top:5px}
+nav{display:flex;gap:8px;margin-top:18px;overflow:auto}
+nav button{border:0;border-radius:12px;padding:11px 16px;background:#172235;color:#fff;white-space:nowrap}
 .hero{padding:38px 20px;text-align:center;background:radial-gradient(circle at top,#123b61,#070b12 65%)}
-.hero h1{font-size:40px;margin:10px 0}.hero p{color:#b7c4d5;line-height:1.6}
+.hero h1{font-size:40px;margin:10px 0}
+.hero p{color:#b7c4d5;line-height:1.6}
 .container{max-width:900px;margin:auto;padding:20px}
 .notice{background:#102238;border:1px solid #245b86;padding:15px;border-radius:15px;margin-bottom:20px;color:#cde8ff}
 .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
 .card{background:#101722;border:1px solid #243246;border-radius:18px;padding:22px;box-shadow:0 8px 30px #0005}
-.card h2{margin-top:0}.price{font-size:30px;font-weight:900;color:#42b5ff}.muted{color:#98a6b8}
+.card h2{margin-top:0}
+.price{font-size:30px;font-weight:900;color:#42b5ff}
+.muted{color:#98a6b8}
 .buy{width:100%;padding:14px;border:0;border-radius:12px;background:#1688e8;color:#fff;font-size:16px;font-weight:bold;margin-top:15px}
+.secondary{width:100%;padding:14px;border:1px solid #304057;border-radius:12px;background:#172235;color:#fff;font-size:16px;font-weight:bold;margin-top:10px}
 input{width:100%;padding:14px;margin:8px 0;background:#0a111c;border:1px solid #304057;border-radius:10px;color:#fff;font-size:15px}
-.panel{display:none}.panel.active{display:block}
-.steps{line-height:1.8}.order{background:#111c29;padding:18px;border-radius:15px;margin-top:15px}
+.panel{display:none}
+.panel.active{display:block}
+.steps{line-height:1.8}
+.order{background:#111c29;padding:18px;border-radius:15px;margin-top:15px}
 footer{text-align:center;padding:30px;color:#718096}
 .small{font-size:13px;color:#8795a8}
+.userbox{background:#102238;border:1px solid #245b86;padding:18px;border-radius:15px;margin-bottom:20px}
+.error{color:#ff7b7b;margin-top:10px}
+.success{color:#6ee7a2;margin-top:10px}
 </style>
 </head>
+
 <body>
 
 <header>
 <div class="logo">FREE CARD MONEY</div>
 <div class="tag">Digital products • Simple ordering</div>
+
 <nav>
 <button onclick="show('home')">Home</button>
 <button onclick="show('shop')">Shop</button>
 <button onclick="show('payment')">Payment</button>
+<button onclick="show('account')">Account</button>
 <button onclick="show('orders')">Orders</button>
 </nav>
 </header>
@@ -40,27 +56,38 @@ footer{text-align:center;padding:30px;color:#718096}
 <section class="panel active" id="home">
 <div class="hero">
 <h1>Buy Digital Cards</h1>
-<p>Choose a product, place your order and pay securely through Telecel MoMo.</p>
+<p>Choose a product, create your account and place your order.</p>
 <button class="buy" onclick="show('shop')">SHOP NOW</button>
 </div>
+
 <div class="container">
+
 <div class="notice">
-<b>Important:</b> These are store-issued digital products. FREE CARD MONEY is not a bank and does not issue bank credit or debit cards.
+<b>Important:</b>
+These are store-issued digital products.
+FREE CARD MONEY is not a bank and does not issue bank credit or debit cards.
 </div>
+
+<div id="homeUser"></div>
+
 <h2>How it works</h2>
+
 <div class="steps">
-1️⃣ Choose your product.<br>
-2️⃣ Enter your name and phone number.<br>
-3️⃣ Send the exact amount through Telecel MoMo.<br>
-4️⃣ Submit your transaction/reference number.<br>
-5️⃣ Your order remains <b>Pending verification</b> until payment is manually verified.
+1️⃣ Create or log in to your account.<br>
+2️⃣ Choose your product.<br>
+3️⃣ Enter your name and phone number.<br>
+4️⃣ Send the exact amount through Telecel MoMo.<br>
+5️⃣ Submit your transaction/reference number.<br>
+6️⃣ Your order remains <b>Pending verification</b> until payment is manually verified.
 </div>
+
 </div>
 </section>
 
 <section class="panel" id="shop">
 <div class="container">
 <h1>Shop</h1>
+
 <div class="products">
 
 <div class="card">
@@ -90,10 +117,22 @@ footer{text-align:center;padding:30px;color:#718096}
 
 <section class="panel" id="payment">
 <div class="container">
+
 <h1>Complete Order</h1>
+
 <div class="card">
+
+<div id="loginRequired" class="notice" style="display:none">
+<b>Account required</b><br><br>
+Please create an account or log in before placing an order.
+<button class="buy" onclick="show('account')">GO TO ACCOUNT</button>
+</div>
+
+<div id="orderForm">
+
 <p>Product</p>
 <h2 id="productName">—</h2>
+
 <p>Amount</p>
 <div class="price" id="productPrice">GH₵0</div>
 
@@ -110,17 +149,87 @@ Network: <b>Telecel</b>
 </div>
 
 <button class="buy" onclick="submitOrder()">SUBMIT ORDER</button>
-<p class="small">Do not submit a false payment reference. Orders are verified before fulfillment.</p>
+
+<p class="small">
+Do not submit a false payment reference.
+Orders are verified before fulfillment.
+</p>
+
 </div>
+</div>
+</div>
+</section>
+
+<section class="panel" id="account">
+<div class="container">
+
+<h1>My Account</h1>
+
+<div id="loggedOut">
+
+<div class="card">
+<h2>Create Account</h2>
+
+<input id="signupEmail" type="email" placeholder="Email address">
+<input id="signupPassword" type="password" placeholder="Password">
+
+<button class="buy" onclick="signUp()">CREATE ACCOUNT</button>
+
+<div id="signupMessage"></div>
+</div>
+
+<div class="card" style="margin-top:20px">
+<h2>Log In</h2>
+
+<input id="loginEmail" type="email" placeholder="Email address">
+<input id="loginPassword" type="password" placeholder="Password">
+
+<button class="buy" onclick="login()">LOG IN</button>
+
+<button class="secondary" onclick="resetPassword()">FORGOT PASSWORD</button>
+
+<div id="loginMessage"></div>
+</div>
+
+</div>
+
+<div id="loggedIn" style="display:none">
+
+<div class="userbox">
+<h2>Account Active ✅</h2>
+
+<p>
+<b>Email:</b>
+<span id="userEmail"></span>
+</p>
+
+<button class="secondary" onclick="logout()">LOG OUT</button>
+</div>
+
+<div class="card">
+<h2>Welcome to FREE CARD MONEY</h2>
+
+<p class="muted">
+Your account is ready. You can now purchase products and view your orders.
+</p>
+
+<button class="buy" onclick="show('shop')">SHOP NOW</button>
+</div>
+
+</div>
+
 </div>
 </section>
 
 <section class="panel" id="orders">
 <div class="container">
-<h1>Your Order</h1>
+
+<h1>Your Orders</h1>
+
 <div id="orderBox" class="order">
 No order submitted yet.
 </div>
+
 </div>
 </section>
 
@@ -129,32 +238,230 @@ FREE CARD MONEY © 2026<br>
 <span class="small">Digital products storefront</span>
 </footer>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
 <script>
+
+const firebaseConfig = {
+ apiKey: "AIzaSyDZqbOmZZH30bGvTwQi8i8vZqXyzOcmWzI",
+ authDomain: "free-card-money-b8790.firebaseapp.com",
+ projectId: "free-card-money-b8790",
+ storageBucket: "free-card-money-b8790.firebasestorage.app",
+ messagingSenderId: "608681253700",
+ appId: "1:608681253700:web:9c1a6a58c2ed673951d511",
+ measurementId: "G-6Y7G7MCY28"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+
 let selectedProduct="";
 let selectedPrice=0;
 
 function show(id){
- document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
- document.getElementById(id).classList.add("active");
+
+ document.querySelectorAll(".panel")
+ .forEach(x=>x.classList.remove("active"));
+
+ document.getElementById(id)
+ .classList.add("active");
+
+ if(id==="payment"){
+  updatePaymentAccess();
+ }
+
  window.scrollTo(0,0);
 }
 
 function buy(name,price){
+
  selectedProduct=name;
  selectedPrice=price;
- document.getElementById("productName").textContent=name;
- document.getElementById("productPrice").textContent="GH₵"+price;
+
+ document.getElementById("productName")
+ .textContent=name;
+
+ document.getElementById("productPrice")
+ .textContent="GH₵"+price;
+
  show("payment");
 }
 
+function updatePaymentAccess(){
+
+ const required=document.getElementById("loginRequired");
+ const form=document.getElementById("orderForm");
+
+ if(!auth.currentUser){
+
+  required.style.display="block";
+  form.style.display="none";
+
+ }else{
+
+  required.style.display="none";
+  form.style.display="block";
+
+ }
+}
+
+function signUp(){
+
+ const email=document.getElementById("signupEmail").value.trim();
+ const password=document.getElementById("signupPassword").value;
+ const message=document.getElementById("signupMessage");
+
+ message.innerHTML="";
+
+ if(!email||!password){
+
+  message.innerHTML="<p class='error'>Please enter your email and password.</p>";
+  return;
+ }
+
+ if(password.length<6){
+
+  message.innerHTML="<p class='error'>Password must be at least 6 characters.</p>";
+  return;
+ }
+
+ auth.createUserWithEmailAndPassword(email,password)
+
+ .then(()=>{
+
+  message.innerHTML="<p class='success'>Account created successfully.</p>";
+
+ })
+
+ .catch(error=>{
+
+  message.innerHTML="<p class='error'>"+error.message+"</p>";
+
+ });
+}
+
+function login(){
+
+ const email=document.getElementById("loginEmail").value.trim();
+ const password=document.getElementById("loginPassword").value;
+ const message=document.getElementById("loginMessage");
+
+ message.innerHTML="";
+
+ if(!email||!password){
+
+  message.innerHTML="<p class='error'>Please enter your email and password.</p>";
+  return;
+ }
+
+ auth.signInWithEmailAndPassword(email,password)
+
+ .then(()=>{
+
+  message.innerHTML="<p class='success'>Login successful.</p>";
+  show("account");
+
+ })
+
+ .catch(error=>{
+
+  message.innerHTML="<p class='error'>"+error.message+"</p>";
+
+ });
+}
+
+function resetPassword(){
+
+ const email=document.getElementById("loginEmail").value.trim();
+ const message=document.getElementById("loginMessage");
+
+ if(!email){
+
+  message.innerHTML="<p class='error'>Enter your email address first.</p>";
+  return;
+ }
+
+ auth.sendPasswordResetEmail(email)
+
+ .then(()=>{
+
+  message.innerHTML="<p class='success'>Password reset email sent. Check your inbox.</p>";
+
+ })
+
+ .catch(error=>{
+
+  message.innerHTML="<p class='error'>"+error.message+"</p>";
+
+ });
+}
+
+function logout(){
+
+ auth.signOut()
+ .then(()=>{
+
+  show("account");
+
+ });
+}
+
+auth.onAuthStateChanged(user=>{
+
+ const loggedOut=document.getElementById("loggedOut");
+ const loggedIn=document.getElementById("loggedIn");
+ const userEmail=document.getElementById("userEmail");
+ const homeUser=document.getElementById("homeUser");
+
+ if(user){
+
+  loggedOut.style.display="none";
+  loggedIn.style.display="block";
+
+  userEmail.textContent=user.email;
+
+  homeUser.innerHTML=
+  "<div class='userbox'><b>Logged in as:</b> "+user.email+"</div>";
+
+ }else{
+
+  loggedOut.style.display="block";
+  loggedIn.style.display="none";
+
+  homeUser.innerHTML="";
+
+ }
+
+ updatePaymentAccess();
+
+});
+
 function submitOrder(){
+
+ if(!auth.currentUser){
+
+  alert("Please log in before placing an order.");
+  show("account");
+  return;
+ }
+
  let name=document.getElementById("customerName").value.trim();
  let phone=document.getElementById("customerPhone").value.trim();
  let ref=document.getElementById("reference").value.trim();
 
  if(!name||!phone||!ref){
-   alert("Please complete all fields.");
-   return;
+
+  alert("Please complete all fields.");
+  return;
+ }
+
+ if(!selectedProduct||!selectedPrice){
+
+  alert("Please select a product first.");
+  show("shop");
+  return;
  }
 
  let order="FCM-"+Date.now().toString().slice(-8);
@@ -166,12 +473,18 @@ function submitOrder(){
  "<p><b>Customer:</b> "+name+"</p>"+
  "<p><b>Phone:</b> "+phone+"</p>"+
  "<p><b>Reference:</b> "+ref+"</p>"+
+ "<p><b>Account:</b> "+auth.currentUser.email+"</p>"+
  "<p><b>Status:</b> 🟡 Pending verification</p>"+
  "<div class='notice'>Payment must be verified before the order is fulfilled.</div>";
 
- localStorage.setItem("fcmOrder",document.getElementById("orderBox").innerHTML);
+ localStorage.setItem(
+  "fcmOrder",
+  document.getElementById("orderBox").innerHTML
+ );
+
  show("orders");
 }
+
 </script>
 
 </body>
