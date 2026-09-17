@@ -260,8 +260,12 @@ const auth = firebase.auth();
 
 let selectedProduct="";
 let selectedPrice=0;
-
 function show(id){
+
+ if(!auth.currentUser && id !== "account"){
+  alert("Please create an account or log in first.");
+  id = "account";
+ }
 
  document.querySelectorAll(".panel")
  .forEach(x=>x.classList.remove("active"));
@@ -276,6 +280,7 @@ function show(id){
  window.scrollTo(0,0);
 }
 
+ 
 function buy(name,price){
 
  selectedProduct=name;
