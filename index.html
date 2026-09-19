@@ -300,7 +300,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
-
+const db = firebase.firestore();
 let selectedProduct="";
 let selectedPrice=0;
 function show(id){
