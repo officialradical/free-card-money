@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FREE CARD MONEY — Admin</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#070b12;
+ color:#fff;
+}
+
+header{
+ padding:22px;
+ background:#101a32;
+ border-bottom:1px solid #243246;
+}
+
+.logo{
+ font-size:24px;
+ font-weight:900;
+ color:#35a7ff;
+}
+
+.container{
+ max-width:900px;
+ margin:auto;
+ padding:20px;
+}
+
+.card{
+ background:#101722;
+ border:1px solid #243246;
+ border-radius:18px;
+ padding:22px;
+ margin-bottom:20px;
+}
+
+input{
+ width:100%;
+ padding:14px;
+ margin:8px 0;
+ background:#0a111c;
+ border:1px solid #304057;
+ border-radius:10px;
+ color:#fff;
+ font-size:15px;
+}
+
+button{
+ width:100%;
+ padding:14px;
+ border:0;
+ border-radius:12px;
+ background:#1688e8;
+ color:#fff;
+ font-size:16px;
+ font-weight:bold;
+ margin-top:10px;
+}
+
+.secondary{
+ background:#172235;
+ border:1px solid #304057;
+}
+
+.hidden{
+ display:none;
+}
+
+.success{
+ color:#6ee7a2;
+}
+
+.error{
+ color:#ff7b7b;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">FREE CARD MONEY — ADMIN</div>
+</header>
+
+<div class="container">
+
+<div id="loginBox" class="card">
+
+<h2>Admin Login</h2>
+
+<input
+ id="adminEmail"
+ type="email"
+ placeholder="Admin email">
+
+<input
+ id="adminPassword"
+ type="password"
+ placeholder="Password">
+
+<button onclick="adminLogin()">
+LOGIN
+</button>
+
+<div id="message"></div>
+
+</div>
+
+
+<div id="dashboard" class="hidden">
+
+<div class="card">
+
+<h2>Admin Dashboard ✅</h2>
+
+<p>
+<b>Logged in as:</b>
+<span id="adminUser"></span>
+</p>
+
+<button class="secondary" onclick="logout()">
+LOG OUT
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>Store</h2>
+
+<p>Basic — GH₵100</p>
+<p>Plus — GH₵200</p>
+<p>Premium — GH₵300</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>Payment</h2>
+
+<p>
+Customers are redirected to PayX for payment.
+</p>
+
+<p>
+<b>Status:</b> PayX checkout connected
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>Admin Notice</h2>
+
+<p>
+Only authorized administrators should use this dashboard.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script>
+
+const firebaseConfig = {
+ apiKey:"AIzaSyDZqbOmZZH30bGvTwQi8i8vZqXyzOcmWzI",
+ authDomain:"free-card-money-b8790.firebaseapp.com",
+ projectId:"free-card-money-b8790",
+ storageBucket:"free-card-money-b8790.firebasestorage.app",
+ messagingSenderId:"608681253700",
+ appId:"1:608681253700:web:9c1a6a58c2ed673951d511",
+ measurementId:"G-6Y7G7MCY28"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth=firebase.auth();
+
+
+function adminLogin(){
+
+ const email=
+ document.getElementById("adminEmail")
+ .value.trim();
+
+ const password=
+ document.getElementById("adminPassword")
+ .value;
+
+ const message=
+ document.getElementById("message");
+
+ message.innerHTML="";
+
+ auth.signInWithEmailAndPassword(
+  email,
+  password
+ )
+
+ .then(userCredential=>{
+
+  document.getElementById("loginBox")
+  .classList.add("hidden");
+
+  document.getElementById("dashboard")
+  .classList.remove("hidden");
+
+  document.getElementById("adminUser")
+  .textContent=
+  userCredential.user.email;
+
+ })
+
+ .catch(error=>{
+
+  message.innerHTML=
+  "<p class='error'>Login failed. Check your email and password.</p>";
+
+ });
+
+}
+
+
+function logout(){
+
+ auth.signOut()
+ .then(()=>{
+
+  document.getElementById("dashboard")
+  .classList.add("hidden");
+
+  document.getElementById("loginBox")
+  .classList.remove("hidden");
+
+ });
+
+}
+
+</script>
+
+</body>
+</html>
