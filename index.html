@@ -283,16 +283,26 @@ function show(id){
  
 function buy(name,price){
 
- selectedProduct=name;
- selectedPrice=price;
+ if(!auth.currentUser){
+  alert("Please create an account or log in first.");
+  show("account");
+  return;
+ }
 
- document.getElementById("productName")
- .textContent=name;
+ const paymentLinks = {
+  100: "https://payx.company/pay/----free-card-money",
+  200: "https://payx.company/pay/----free-card-money---plus",
+  300: "https://payx.company/pay/----free-card-money---premium"
+ };
 
- document.getElementById("productPrice")
- .textContent="GH₵"+price;
+ const link = paymentLinks[price];
 
- show("payment");
+ if(!link){
+  alert("Payment link is not available for this product.");
+  return;
+ }
+
+ window.location.href = link;
 }
 
 function updatePaymentAccess(){
