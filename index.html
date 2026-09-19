@@ -500,7 +500,6 @@ auth.onAuthStateChanged(user=>{
 function submitOrder(){
 
  if(!auth.currentUser){
-
   alert("Please log in before placing an order.");
   show("account");
   return;
@@ -511,13 +510,11 @@ function submitOrder(){
  let ref=document.getElementById("reference").value.trim();
 
  if(!name||!phone||!ref){
-
   alert("Please complete all fields.");
   return;
  }
 
  if(!selectedProduct||!selectedPrice){
-
   alert("Please select a product first.");
   show("shop");
   return;
@@ -525,25 +522,46 @@ function submitOrder(){
 
  let order="FCM-"+Date.now().toString().slice(-8);
 
- document.getElementById("orderBox").innerHTML=
- "<h2>"+order+"</h2>"+
- "<p><b>Product:</b> "+selectedProduct+"</p>"+
- "<p><b>Amount:</b> GH₵"+selectedPrice+"</p>"+
- "<p><b>Customer:</b> "+name+"</p>"+
- "<p><b>Phone:</b> "+phone+"</p>"+
- "<p><b>Reference:</b> "+ref+"</p>"+
- "<p><b>Account:</b> "+auth.currentUser.email+"</p>"+
- "<p><b>Status:</b> 🟡 Pending verification</p>"+
- "<div class='notice'>Payment must be verified before the order is fulfilled.</div>";
+ db.collection("Orders").doc(order).set({
+  orderId: order,
+  product: selectedProduct,
+  amount: selectedPrice,
+  customerName: name,
+  customerPhone: phone,
+  customerEmail: auth.currentUser.email,
+  paymentReference: ref,
+  status: "Pending verification",
+  createdAt: firebase.firestore.FieldValue.serverTimestamp()
+ })
+ .then(() => {
 
- localStorage.setItem(
-  "fcmOrder",
-  document.getElementById("orderBox").innerHTML
- );
+  document.getElementById("orderBox").innerHTML =
+   "<h2>"+order+"</h2>"+
+   "<p><b>Product:</b> "+selectedProduct+"</p>"+
+   "<p><b>Amount:</b> GH₵"+selectedPrice+"</p>"+
+   "<p><b>Customer:</b> "+name+"</p>"+
+   "<p><b>Phone:</b> "+phone+"</p>"+
+   "<p><b>Reference:</b> "+ref+"</p>"+
+   "<p><b>Account:</b> "+auth.currentUser.email+"</p>"+
+   "<p><b>Status:</b> 🟡 Pending verification</p>"+
+   "<div class='notice'>Payment must be verified before delivery.</div>";
 
- show("orders");
+  localStorage.setItem(
+   "fcmOrder",
+   document.getElementById("orderBox").innerHTML
+  );
+
+  show("orders");
+
+ })
+ .catch((error) => {
+  console.error(error);
+  alert("Order could not be saved. Please try again.");
+ });
+
 }
 
+ 
 </script>
 
 </body>
