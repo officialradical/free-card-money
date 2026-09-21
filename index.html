@@ -289,10 +289,28 @@ function buy(name,price){
  }
 
 
+ selectedProduct=name;
+ selectedPrice=price;
+
+ document.getElementById("productName").textContent=name;
+ document.getElementById("productPrice").textContent="GH₵"+price;
+
+ show("payment");
 }
 
-function updatePaymentAccess(){
 
+
+
+function copyMomo(){
+ const number="0208424350";
+
+ if(navigator.clipboard && window.isSecureContext){
+  navigator.clipboard.writeText(number)
+   .then(()=>alert("MoMo number copied."));
+ }else{
+  alert("Telecel MoMo: "+number+" — DUANE MANU");
+ }
+function updatePaymentAccess(){
  const required=document.getElementById("loginRequired");
  const form=document.getElementById("orderForm");
 
