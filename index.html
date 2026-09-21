@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FREE CARD MONEY</title>
-
+ 
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:#070b12;color:#fff}
@@ -47,7 +47,7 @@ footer{text-align:center;padding:30px;color:#718096}
 <nav>
 <button onclick="show('home')">Home</button>
 <button onclick="show('shop')">Shop</button>
-<button onclick="show('payment')">Payment</button>
+
 <button onclick="show('account')">Account</button>
 <button onclick="show('orders')">Orders</button>
 </nav>
@@ -280,20 +280,7 @@ function buy(name,price){
   return;
  }
 
- const paymentLinks = {
-  100: "https://payx.company/pay/----free-card-money",
-  200: "https://payx.company/pay/----free-card-money---plus",
-  300: "https://payx.company/pay/----free-card-money---premium"
- };
 
- const link = paymentLinks[price];
-
- if(!link){
-  alert("Payment link is not available for this product.");
-  return;
- }
-
- window.location.href = link;
 }
 
 function updatePaymentAccess(){
