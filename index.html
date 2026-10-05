@@ -237,7 +237,7 @@ footer{
       <div class="card">
   <h2>Digital Card — Plus</h2>
   <p class="muted">Plus digital product</p>
-  <div class="price">GH₵200</
+  <div class="price">GH₵200</div>
 </div>
 <button class="buy" onclick="buyProduct('Digital Card — Plus',200)">
   BUY NOW
@@ -529,7 +529,7 @@ let selectedPrice = 0;
 
 function showPage(id){
 
-  if(!auth.currentUser && id !== "home" && id !== "account"){
+  if(!auth.currentUser && id !== "home" && id !== "account" && id !== "shop"){
 
     alert("Please create an account or log in first.");
 
