@@ -649,6 +649,355 @@ Math.random()
 
 async function submitOrder(){
 
+  const name =
+    document
+      .getElementById("customerName")
+      .value
+      .trim();
+
+  const phone =
+    document
+      .getElementById("customerPhone")
+      .value
+      .trim();
+
+  const channel =
+    document
+      .getElementById("paymentNetwork")
+      .value;
+
+  if(!auth.currentUser){
+
+    alert(
+      "Please create an account or log in first."
+    );
+
+    showPage("account");
+
+    return;
+  }
+
+  if(!selectedProduct || !selectedPrice){
+
+    showMessage(
+      "Please select a product first.",
+      "error"
+    );
+
+    showPage("shop");
+
+    return;
+  }
+
+  if(!name || !phone){
+
+    showMessage(
+      "Please enter your full name and Ghana phone number.",
+      "error"
+    );
+
+    return;
+  }
+
+  if(!/^0\d{9}$/.test(phone)){
+
+    showMessage(
+      "Enter a valid Ghana phone number.",
+      "error"
+    );
+
+    return;
+  }
+
+  const externalref =
+    makeReference();
+
+  showMessage(
+    "Sending payment request..."
+  );
+
+  try {
+
+    const response =
+      await fetch(
+        MOOLRE_WORKER + "/pay",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+            product:
+              selectedProduct,
+
+            phone:
+              phone,
+
+            channel:
+              channel,
+
+            externalref:
+              externalref
+          })
+        }
+      );
+
+    const data =
+      await response.json();
+
+    /*
+      Moolre OTP verification
+    */
+
+    if(
+      data.code === "TP14"
+    ){
+
+      const otp =
+        window.prompt(
+          "Moolre sent a verification code to your phone. Enter the OTP:"
+        );
+
+      if(!otp){
+
+        showMessage(
+          "OTP verification was cancelled.",
+          "error"
+        );
+
+        return;
+      }
+
+      showMessage(
+        "Verifying OTP..."
+      );
+
+      const otpResponse =
+        await fetch(
+          MOOLRE_WORKER + "/pay",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
+
+            body: JSON.stringify({
+
+              product:
+                selectedProduct,
+
+              phone:
+                phone,
+
+              channel:
+                channel,
+
+              externalref:
+                externalref,
+
+              otpcode:
+                otp.trim()
+
+            })
+          }
+        );
+
+      const otpData =
+        await otpResponse.json();
+
+      if(
+        !otpResponse.ok ||
+        otpData.status != 1
+      ){
+
+        showMessage(
+          otpData.message ||
+          otpData.error ||
+          "OTP verification failed.",
+          "error"
+        );
+
+        return;
+      }
+
+      showMessage(
+        "Payment request sent. Approve the Mobile Money prompt on your phone.",
+        "success"
+      );
+
+    }
+
+    else if(
+      !response.ok ||
+      data.status != 1
+    ){
+
+      showMessage(
+        data.message ||
+        data.error ||
+        "Payment request could not be started.",
+        "error"
+      );
+
+      return;
+    }
+
+    else{
+
+      showMessage(
+        "Payment request sent. Approve the Mobile Money prompt on your phone.",
+        "success"
+      );
+    }
+
+
+    /*
+      Check payment status
+    */
+
+    let attempts = 0;
+
+    const timer =
+      setInterval(
+        async function(){
+
+          attempts++;
+
+          try{
+
+            const statusResponse =
+              await fetch(
+                MOOLRE_WORKER +
+                "/status",
+                {
+                  method: "POST",
+
+                  headers: {
+                    "Content-Type":
+                      "application/json"
+                  },
+
+                  body:
+                    JSON.stringify({
+                      externalref:
+                        externalref
+                    })
+                }
+              );
+
+            const statusData =
+              await statusResponse.json();
+
+            const tx =
+              statusData &&
+              statusData.data;
+
+
+            if(
+              statusData.status == 1 &&
+              tx &&
+              tx.txstatus == 1
+            ){
+
+              clearInterval(timer);
+
+              try{
+
+                await db
+                  .collection("Orders")
+                  .doc(externalref)
+                  .set({
+
+                    orderId:
+                      externalref,
+
+                    product:
+                      selectedProduct,
+
+                    amount:
+                      selectedPrice,
+
+                    customerName:
+                      name,
+
+                    customerPhone:
+                      phone,
+
+                    customerEmail:
+                      auth.currentUser.email,
+
+                    paymentReference:
+                      externalref,
+
+                    status:
+                      "Payment confirmed",
+
+                    createdAt:
+                      firebase.firestore
+                        .FieldValue
+                        .serverTimestamp()
+
+                  });
+
+              }catch(error){
+
+                console.log(
+                  "Order save failed:",
+                  error
+                );
+              }
+
+              showMessage(
+                "Payment confirmed successfully.",
+                "success"
+              );
+
+              return;
+            }
+
+
+            if(attempts >= 24){
+
+              clearInterval(timer);
+
+              showMessage(
+                "Payment is still processing. Please check Orders later."
+              );
+            }
+
+          }catch(error){
+
+            if(attempts >= 24){
+
+              clearInterval(timer);
+
+              showMessage(
+                "Unable to check payment status right now.",
+                "error"
+              );
+            }
+          }
+
+        },
+        5000
+      );
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "Unable to start payment. Please try again.",
+      "error"
+    );
+  }
+}
+
 const name =
 document
 .getElementById("customerName")
