@@ -1045,13 +1045,11 @@ function startPaymentCheck(externalref){
 
   let attempts = 0;
 
-
   const timer =
   setInterval(
     async function(){
 
       attempts++;
-
 
       try{
 
@@ -1059,85 +1057,94 @@ function startPaymentCheck(externalref){
         await fetch(
           MOOLRE_WORKER + "/status",
           {
-
             method:"POST",
-
             headers:{
-              "Content-Type":
-              "application/json"
+              "Content-Type":"application/json"
             },
-
             body:JSON.stringify({
-
-              externalref:
-              externalref
-
+              externalref: externalref
             })
-
           }
         );
 
+        const raw =
+        await response.text();
 
-        const data =
-        await response.json();
+        let data;
 
+        try{
+          data = JSON.parse(raw);
+        }catch(error){
+          throw new Error(
+            "Status server returned invalid data."
+          );
+        }
+
+        console.log(
+          "Moolre payment status:",
+          data
+        );
 
         const tx =
-        data &&
-        data.data;
+          data &&
+          data.data;
 
+        const txstatus =
+          tx &&
+          tx.txstatus;
 
         if(
+          response.ok &&
           data.status == 1 &&
-          tx &&
-          tx.txstatus == 1
+          String(txstatus) === "1"
         ){
 
           clearInterval(timer);
 
-
           await saveOrder(
             externalref
           );
-
 
           showMessage(
             "Payment confirmed successfully.",
             "success"
           );
 
-
           pendingPayment = null;
 
           return;
-
         }
-
 
         if(attempts >= 24){
 
           clearInterval(timer);
 
-
           showMessage(
-            "Payment is still processing. Check your Orders later."
+            "Payment status: " +
+            (data.code || "Unknown") +
+            " — " +
+            (data.message ||
+             "Payment is still processing."),
+            "error"
           );
 
+          return;
         }
-
 
       }catch(error){
 
-        console.error(error);
-
+        console.error(
+          "Payment status error:",
+          error
+        );
 
         if(attempts >= 24){
 
           clearInterval(timer);
 
-
           showMessage(
-            "Unable to check payment status.",
+            "Unable to check payment status: " +
+            error.message,
             "error"
           );
 
@@ -1146,13 +1153,9 @@ function startPaymentCheck(externalref){
       }
 
     },
-
     5000
-
   );
-
 }
-
 
 async function saveOrder(externalref){
 
