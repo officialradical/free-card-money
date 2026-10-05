@@ -2,156 +2,191 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>FREE CARD MONEY</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
   font-family:Arial,sans-serif;
-  background:#070b12;
+  background:#0b0b0f;
   color:#fff;
 }
 
 header{
-  padding:20px;
-  background:#101a32;
+  background:#11131a;
+  padding:18px;
   position:sticky;
   top:0;
   z-index:10;
+  border-bottom:1px solid #292d38;
 }
 
 .logo{
-  font-size:27px;
-  font-weight:900;
-  color:#35a7ff;
-}
-
-.tag{
-  color:#9aa8bb;
-  margin-top:5px;
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+  margin-bottom:15px;
 }
 
 nav{
   display:flex;
+  justify-content:center;
   gap:8px;
-  margin-top:16px;
-  overflow:auto;
+  flex-wrap:wrap;
 }
 
 nav button{
+  background:#1b1e27;
+  color:#fff;
   border:0;
-  border-radius:12px;
-  padding:13px 16px;
-  background:#172235;
-  color:#fff;
-  font-weight:bold;
-  white-space:nowrap;
+  padding:10px 14px;
+  border-radius:8px;
 }
 
-.hero{
-  padding:45px 20px;
-  text-align:center;
-  background:#0b1726;
-}
-
-.hero h1{
-  font-size:40px;
-}
-
-.hero p{
-  color:#b7c4d5;
-}
-
-.container{
-  max-width:900px;
-  margin:auto;
-  padding:20px;
-}
-
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:16px;
-}
-
-.card{
-  background:#101722;
-  border:1px solid #243246;
-  border-radius:18px;
-  padding:22px;
-  margin-bottom:18px;
-}
-
-.price{
-  font-size:30px;
-  font-weight:900;
-  color:#42b5ff;
-  margin:12px 0;
-}
-
-.muted{
-  color:#98a6b8;
-}
-
-.buy,
-.secondary{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.buy{
-  border:0;
-  background:#1688e8;
-  color:#fff;
-  margin-top:10px;
-}
-
-.secondary{
-  border:1px solid #304057;
-  background:#172235;
-  color:#fff;
-  margin-top:10px;
-}
-
-input,
-select{
-  width:100%;
-  padding:14px;
-  margin:8px 0;
-  background:#0a111c;
-  border:1px solid #304057;
-  border-radius:10px;
-  color:#fff;
-  font-size:15px;
+nav button:hover{
+  background:#303541;
 }
 
 .panel{
   display:none;
+  padding:35px 18px;
 }
 
 .panel.active{
   display:block;
 }
 
-.error{
-  color:#ff7b7b;
+.container{
+  max-width:900px;
+  margin:auto;
 }
 
-.success{
-  color:#65e08a;
+.hero{
+  text-align:center;
+  padding:50px 10px;
+}
+
+.hero h1{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#b8bdc9;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+  margin-top:25px;
+}
+
+.card{
+  background:#151820;
+  border:1px solid #292d38;
+  border-radius:15px;
+  padding:24px;
+  text-align:center;
+}
+
+.card h2{
+  font-size:20px;
+}
+
+.price{
+  font-size:28px;
+  font-weight:bold;
+  margin:18px 0;
+}
+
+.buy{
+  width:100%;
+  padding:13px;
+  border:0;
+  border-radius:9px;
+  background:#19c37d;
+  color:#fff;
+  font-weight:bold;
+  font-size:16px;
+}
+
+.buy:active{
+  transform:scale(.98);
+}
+
+input,select{
+  width:100%;
+  padding:13px;
+  margin:8px 0 14px;
+  border-radius:8px;
+  border:1px solid #343945;
+  background:#101219;
+  color:#fff;
+}
+
+label{
+  display:block;
+  margin-top:10px;
+  color:#d9dce3;
+}
+
+.box{
+  max-width:500px;
+  margin:auto;
+  background:#151820;
+  padding:25px;
+  border-radius:15px;
+  border:1px solid #292d38;
+}
+
+.message{
+  margin:15px 0;
+  padding:12px;
+  border-radius:8px;
+  background:#20242d;
+  color:#fff;
+}
+
+.message.error{
+  background:#4a1e24;
+}
+
+.message.success{
+  background:#174b37;
+}
+
+.order{
+  background:#151820;
+  border:1px solid #292d38;
+  padding:18px;
+  border-radius:12px;
+  margin:12px 0;
+}
+
+.small{
+  color:#aeb4c0;
+  font-size:14px;
+}
+
+#otpBox{
+  display:none;
+  margin-top:20px;
+  padding:18px;
+  background:#20242d;
+  border-radius:10px;
 }
 
 footer{
   text-align:center;
-  padding:30px;
-  color:#8795a8;
+  color:#858b98;
+  padding:35px;
 }
 </style>
 </head>
@@ -160,17 +195,28 @@ footer{
 
 <header>
 
-<div class="logo">FREE CARD MONEY</div>
-
-<div class="tag">
-Digital products • Simple ordering
+<div class="logo">
+FREE CARD MONEY
 </div>
 
 <nav>
-<button onclick="showPage('home')">Home</button>
-<button onclick="showPage('shop')">Shop</button>
-<button onclick="showPage('account')">Account</button>
-<button onclick="showPage('orders')">Orders</button>
+
+<button onclick="showPage('home')">
+Home
+</button>
+
+<button onclick="showPage('shop')">
+Shop
+</button>
+
+<button onclick="showPage('account')">
+Account
+</button>
+
+<button onclick="showPage('orders')">
+Orders
+</button>
+
 </nav>
 
 </header>
@@ -180,17 +226,26 @@ Digital products • Simple ordering
 
 <section id="home" class="panel active">
 
+<div class="container">
+
 <div class="hero">
 
-<h1>Buy Digital Cards</h1>
+<h1>
+FREE CARD MONEY
+</h1>
 
 <p>
-Choose a product and place your order securely.
+Digital products made simple.
 </p>
 
-<button class="buy" onclick="showPage('shop')">
+<br>
+
+<button class="buy"
+onclick="showPage('shop')">
 SHOP NOW
 </button>
+
+</div>
 
 </div>
 
@@ -205,16 +260,18 @@ SHOP NOW
 
 <h1>Shop</h1>
 
+<p class="small">
+Choose a product and place your order.
+</p>
+
 <div class="products">
 
 
 <div class="card">
 
-<h2>Digital Card — Basic</h2>
-
-<p class="muted">
-Basic digital product
-</p>
+<h2>
+Digital Card — Basic
+</h2>
 
 <div class="price">
 GH₵100
@@ -222,8 +279,7 @@ GH₵100
 
 <button
 class="buy"
-onclick="buyProduct('Digital Card — Basic',100)"
->
+onclick="buyProduct('Digital Card — Basic',100)">
 BUY NOW
 </button>
 
@@ -232,11 +288,9 @@ BUY NOW
 
 <div class="card">
 
-<h2>Digital Card — Plus</h2>
-
-<p class="muted">
-Plus digital product
-</p>
+<h2>
+Digital Card — Plus
+</h2>
 
 <div class="price">
 GH₵200
@@ -244,8 +298,7 @@ GH₵200
 
 <button
 class="buy"
-onclick="buyProduct('Digital Card — Plus',200)"
->
+onclick="buyProduct('Digital Card — Plus',200)">
 BUY NOW
 </button>
 
@@ -254,11 +307,9 @@ BUY NOW
 
 <div class="card">
 
-<h2>Digital Card — Premium</h2>
-
-<p class="muted">
-Premium digital product
-</p>
+<h2>
+Digital Card — Premium
+</h2>
 
 <div class="price">
 GH₵300
@@ -266,100 +317,12 @@ GH₵300
 
 <button
 class="buy"
-onclick="buyProduct('Digital Card — Premium',300)"
->
+onclick="buyProduct('Digital Card — Premium',300)">
 BUY NOW
 </button>
 
 </div>
 
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- PAYMENT -->
-
-<section id="payment" class="panel">
-
-<div class="container">
-
-<h1>Complete Order</h1>
-
-<div class="card">
-
-<h2 id="productName">
-Product
-</h2>
-
-<div id="productPrice" class="price">
-GH₵0
-</div>
-
-
-<label>
-Mobile Money network
-</label>
-
-<select id="paymentNetwork">
-
-<option value="13">
-MTN MoMo
-</option>
-
-<option value="6">
-Telecel Cash
-</option>
-
-<option value="7">
-AT Money
-</option>
-
-</select>
-
-
-<label>
-Full name
-</label>
-
-<input
-id="customerName"
-type="text"
-placeholder="Full name"
->
-
-
-<label>
-Ghana phone number
-</label>
-
-<input
-id="customerPhone"
-type="tel"
-placeholder="0XXXXXXXXX"
->
-
-
-<button
-class="buy"
-onclick="submitOrder()"
->
-PAY NOW
-</button>
-
-
-<button
-class="secondary"
-onclick="showPage('shop')"
->
-BACK TO SHOP
-</button>
-
-
-<div id="paymentMessage"></div>
 
 </div>
 
@@ -374,98 +337,63 @@ BACK TO SHOP
 
 <div class="container">
 
+<div class="box">
+
 <h1>Account</h1>
 
+<div id="accountStatus"
+class="message">
+Not logged in.
+</div>
 
-<div id="loggedOut">
+<div id="authForms">
 
-
-<div class="card">
-
-<h2>Create account</h2>
+<h3>Create account</h3>
 
 <input
 id="signupEmail"
 type="email"
-placeholder="Email"
->
+placeholder="Email">
 
 <input
 id="signupPassword"
 type="password"
-placeholder="Password (6+ characters)"
->
+placeholder="Password">
 
 <button
 class="buy"
-onclick="signUp()"
->
+onclick="signUp()">
 CREATE ACCOUNT
 </button>
 
-<div id="signupMessage"></div>
 
-</div>
-
-
-<div class="card">
-
-<h2>Log in</h2>
+<h3 style="margin-top:30px">
+Login
+</h3>
 
 <input
 id="loginEmail"
 type="email"
-placeholder="Email"
->
+placeholder="Email">
 
 <input
 id="loginPassword"
 type="password"
-placeholder="Password"
->
+placeholder="Password">
 
 <button
 class="buy"
-onclick="loginUser()"
->
-LOG IN
+onclick="login()">
+LOGIN
 </button>
 
-<div id="loginMessage"></div>
-
 </div>
-
-
-</div>
-
-
-<div
-id="loggedIn"
-style="display:none"
->
-
-<div class="card">
-
-<h2>
-Account ready
-</h2>
-
-<p>
-Email:
-<span id="userEmail"></span>
-</p>
 
 <button
+id="logoutButton"
 class="buy"
-onclick="showPage('shop')"
->
-SHOP NOW
-</button>
-
-<button
-class="secondary"
-onclick="logout()"
->
+style="display:none;margin-top:20px"
+onclick="logout()">
 LOG OUT
 </button>
 
@@ -473,6 +401,116 @@ LOG OUT
 
 </div>
 
+</section>
+
+
+<!-- PAYMENT -->
+
+<section id="payment" class="panel">
+
+<div class="container">
+
+<div class="box">
+
+<h1>Payment</h1>
+
+<div class="message">
+
+Product:
+<strong id="productName"></strong>
+
+<br><br>
+
+Amount:
+<strong id="productPrice"></strong>
+
+</div>
+
+
+<label>
+Full name
+</label>
+
+<input
+id="customerName"
+type="text"
+placeholder="Your full name">
+
+
+<label>
+Ghana Mobile Money number
+</label>
+
+<input
+id="customerPhone"
+type="tel"
+inputmode="numeric"
+placeholder="e.g. 0241234567">
+
+
+<label>
+Mobile Money network
+</label>
+
+<select id="paymentNetwork">
+
+<option value="13">
+MTN
+</option>
+
+<option value="6">
+Telecel
+</option>
+
+<option value="7">
+AirtelTigo
+</option>
+
+</select>
+
+
+<div
+id="paymentMessage"
+class="message">
+</div>
+
+
+<button
+class="buy"
+onclick="submitOrder()">
+PAY NOW
+</button>
+
+
+<!-- OTP -->
+
+<div id="otpBox">
+
+<h3>
+Verification code
+</h3>
+
+<p class="small">
+Moolre has sent a verification code to your phone.
+Enter the code below.
+</p>
+
+<input
+id="otpCode"
+type="text"
+inputmode="numeric"
+autocomplete="one-time-code"
+placeholder="Enter verification code">
+
+<button
+class="buy"
+onclick="verifyOtp()">
+VERIFY CODE
+</button>
+
+</div>
+
+</div>
 
 </div>
 
@@ -485,15 +523,14 @@ LOG OUT
 
 <div class="container">
 
-<h1>
-Your Orders
-</h1>
+<h1>Orders</h1>
 
-<div
-id="orderBox"
-class="card"
->
-No order submitted yet.
+<div id="ordersList">
+
+<div class="message">
+Please log in to view your orders.
+</div>
+
 </div>
 
 </div>
@@ -502,11 +539,9 @@ No order submitted yet.
 
 
 <footer>
-FREE CARD MONEY © 2026
+FREE CARD MONEY
 </footer>
 
-
-<!-- FIREBASE -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
@@ -519,32 +554,31 @@ FREE CARD MONEY © 2026
 
 const firebaseConfig = {
 
-apiKey:
-"AIzaSyDZqbOmZZH30bGvTwQi8i8vZqXyzOcmWzI",
+  apiKey:
+  "AIzaSyDZqbOmZZH30bGvTwQi8i8vZqXyzOcmWzI",
 
-authDomain:
-"free-card-money-b8790.firebaseapp.com",
+  authDomain:
+  "free-card-money-b8790.firebaseapp.com",
 
-projectId:
-"free-card-money-b8790",
+  projectId:
+  "free-card-money-b8790",
 
-storageBucket:
-"free-card-money-b8790.firebasestorage.app",
+  storageBucket:
+  "free-card-money-b8790.firebasestorage.app",
 
-messagingSenderId:
-"608681253700",
+  messagingSenderId:
+  "608681253700",
 
-appId:
-"1:608681253700:web:9c1a6a58c2ed673951d511",
+  appId:
+  "1:608681253700:web:9c1a6a58c2ed673951d511",
 
-measurementId:
-"G-6Y7G7MCY28"
+  measurementId:
+  "G-6Y7G7MCY28"
 
 };
 
 
 firebase.initializeApp(firebaseConfig);
-
 
 const auth =
 firebase.auth();
@@ -561,143 +595,166 @@ let selectedProduct = "";
 
 let selectedPrice = 0;
 
+let pendingPayment = null;
 
 
 function showPage(id){
 
-document
-.querySelectorAll(".panel")
-.forEach(function(panel){
+  document
+  .querySelectorAll(".panel")
+  .forEach(function(panel){
 
-panel.classList.remove("active");
+    panel.classList.remove("active");
 
-});
-
-
-const page =
-document.getElementById(id);
+  });
 
 
-if(page){
+  const page =
+  document.getElementById(id);
 
-page.classList.add("active");
+  if(!page){
 
-window.scrollTo(0,0);
+    console.error(
+      "Page not found:",
+      id
+    );
+
+    return;
+
+  }
+
+
+  page.classList.add("active");
+
+  window.scrollTo(0,0);
+
+
+  if(id === "orders"){
+
+    loadOrders();
+
+  }
 
 }
-
-}
-
 
 
 function buyProduct(name,price){
 
-selectedProduct = name;
+  selectedProduct = name;
 
-selectedPrice = price;
-
-
-document
-.getElementById("productName")
-.textContent = name;
+  selectedPrice = price;
 
 
-document
-.getElementById("productPrice")
-.textContent =
-"GH₵" + price;
+  document
+  .getElementById("productName")
+  .textContent = name;
 
 
-document
-.getElementById("paymentMessage")
-.innerHTML = "";
+  document
+  .getElementById("productPrice")
+  .textContent =
+  "GH₵" + price;
 
 
-showPage("payment");
+  document
+  .getElementById("paymentMessage")
+  .innerHTML = "";
+
+
+  document
+  .getElementById("otpBox")
+  .style.display = "none";
+
+
+  document
+  .getElementById("otpCode")
+  .value = "";
+
+
+  pendingPayment = null;
+
+
+  showPage("payment");
 
 }
-
 
 
 function showMessage(message,type){
 
-const box =
-document.getElementById("paymentMessage");
+  const box =
+  document.getElementById(
+    "paymentMessage"
+  );
 
-box.className =
-type || "";
+  box.textContent = message;
 
-box.innerHTML =
-"<p>" + message + "</p>";
+  box.className =
+  "message " + (type || "");
 
 }
-
 
 
 function makeReference(){
 
-return "FCM-" +
-Date.now() +
-"-" +
-Math.random()
-.toString(36)
-.slice(2,10);
+  return (
+    "FCM-" +
+    Date.now() +
+    "-" +
+    Math.random()
+      .toString(36)
+      .substring(2,8)
+      .toUpperCase()
+  );
 
 }
 
 
-
 async function submitOrder(){
-
-  const name =
-    document
-      .getElementById("customerName")
-      .value
-      .trim();
-
-  const phone =
-    document
-      .getElementById("customerPhone")
-      .value
-      .trim();
-
-  const channel =
-    document
-      .getElementById("paymentNetwork")
-      .value;
 
   if(!auth.currentUser){
 
     alert(
-      "Please create an account or log in first."
+      "Please log in before making a payment."
     );
 
     showPage("account");
 
     return;
+
   }
 
-  if(!selectedProduct || !selectedPrice){
+
+  const name =
+  document
+  .getElementById("customerName")
+  .value
+  .trim();
+
+
+  const phone =
+  document
+  .getElementById("customerPhone")
+  .value
+  .trim();
+
+
+  const channel =
+  document
+  .getElementById("paymentNetwork")
+  .value;
+
+
+  if(!name){
 
     showMessage(
-      "Please select a product first.",
+      "Please enter your full name.",
       "error"
     );
 
-    showPage("shop");
-
     return;
+
   }
 
-  if(!name || !phone){
-
-    showMessage(
-      "Please enter your full name and Ghana phone number.",
-      "error"
-    );
-
-    return;
-  }
 
   if(!/^0\d{9}$/.test(phone)){
 
@@ -707,285 +764,139 @@ async function submitOrder(){
     );
 
     return;
+
   }
 
+
+  if(!selectedProduct){
+
+    showMessage(
+      "Please select a product.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
   const externalref =
-    makeReference();
+  makeReference();
+
+
+  pendingPayment = {
+
+    product:
+    selectedProduct,
+
+    price:
+    selectedPrice,
+
+    name:
+    name,
+
+    phone:
+    phone,
+
+    channel:
+    channel,
+
+    externalref:
+    externalref
+
+  };
+
 
   showMessage(
     "Sending payment request..."
   );
 
-  try {
+
+  try{
 
     const response =
-      await fetch(
-        MOOLRE_WORKER + "/pay",
-        {
-          method: "POST",
+    await fetch(
+      MOOLRE_WORKER + "/pay",
+      {
 
-          headers: {
-            "Content-Type":
-              "application/json"
-          },
+        method:"POST",
 
-          body: JSON.stringify({
-            product:
-              selectedProduct,
+        headers:{
+          "Content-Type":
+          "application/json"
+        },
 
-            phone:
-              phone,
+        body:JSON.stringify({
 
-            channel:
-              channel,
+          product:
+          selectedProduct,
 
-            externalref:
-              externalref
-          })
-        }
-      );
+          phone:
+          phone,
+
+          channel:
+          channel,
+
+          externalref:
+          externalref
+
+        })
+
+      }
+    );
+
 
     const data =
-      await response.json();
+    await response.json();
 
-    /*
-      Moolre OTP verification
-    */
 
-    if(
-      data.code === "TP14"
-    ){
+    if(data.code === "TP14"){
 
-      const otp =
-        window.prompt(
-          "Moolre sent a verification code to your phone. Enter the OTP:"
-        );
+      document
+      .getElementById("otpBox")
+      .style.display = "block";
 
-      if(!otp){
-
-        showMessage(
-          "OTP verification was cancelled.",
-          "error"
-        );
-
-        return;
-      }
 
       showMessage(
-        "Verifying OTP..."
+        "A verification code was sent to your phone."
       );
 
-      const otpResponse =
-        await fetch(
-          MOOLRE_WORKER + "/pay",
-          {
-            method: "POST",
 
-            headers: {
-              "Content-Type":
-                "application/json"
-            },
-
-            body: JSON.stringify({
-
-              product:
-                selectedProduct,
-
-              phone:
-                phone,
-
-              channel:
-                channel,
-
-              externalref:
-                externalref,
-
-              otpcode:
-                otp.trim()
-
-            })
-          }
-        );
-
-      const otpData =
-        await otpResponse.json();
-
-      if(
-        !otpResponse.ok ||
-        otpData.status != 1
-      ){
-
-        showMessage(
-          otpData.message ||
-          otpData.error ||
-          "OTP verification failed.",
-          "error"
-        );
-
-        return;
-      }
-
-      showMessage(
-        "Payment request sent. Approve the Mobile Money prompt on your phone.",
-        "success"
-      );
+      return;
 
     }
 
-    else if(
+
+    if(
       !response.ok ||
       data.status != 1
     ){
 
       showMessage(
+
         data.message ||
         data.error ||
-        "Payment request could not be started.",
+        "Unable to start payment.",
+
         "error"
+
       );
 
       return;
-    }
 
-    else{
-
-      showMessage(
-        "Payment request sent. Approve the Mobile Money prompt on your phone.",
-        "success"
-      );
     }
 
 
-    /*
-      Check payment status
-    */
-
-    let attempts = 0;
-
-    const timer =
-      setInterval(
-        async function(){
-
-          attempts++;
-
-          try{
-
-            const statusResponse =
-              await fetch(
-                MOOLRE_WORKER +
-                "/status",
-                {
-                  method: "POST",
-
-                  headers: {
-                    "Content-Type":
-                      "application/json"
-                  },
-
-                  body:
-                    JSON.stringify({
-                      externalref:
-                        externalref
-                    })
-                }
-              );
-
-            const statusData =
-              await statusResponse.json();
-
-            const tx =
-              statusData &&
-              statusData.data;
+    showMessage(
+      "Payment request sent. Approve the Mobile Money request on your phone.",
+      "success"
+    );
 
 
-            if(
-              statusData.status == 1 &&
-              tx &&
-              tx.txstatus == 1
-            ){
+    startPaymentCheck(
+      externalref
+    );
 
-              clearInterval(timer);
-
-              try{
-
-                await db
-                  .collection("Orders")
-                  .doc(externalref)
-                  .set({
-
-                    orderId:
-                      externalref,
-
-                    product:
-                      selectedProduct,
-
-                    amount:
-                      selectedPrice,
-
-                    customerName:
-                      name,
-
-                    customerPhone:
-                      phone,
-
-                    customerEmail:
-                      auth.currentUser.email,
-
-                    paymentReference:
-                      externalref,
-
-                    status:
-                      "Payment confirmed",
-
-                    createdAt:
-                      firebase.firestore
-                        .FieldValue
-                        .serverTimestamp()
-
-                  });
-
-              }catch(error){
-
-                console.log(
-                  "Order save failed:",
-                  error
-                );
-              }
-
-              showMessage(
-                "Payment confirmed successfully.",
-                "success"
-              );
-
-              return;
-            }
-
-
-            if(attempts >= 24){
-
-              clearInterval(timer);
-
-              showMessage(
-                "Payment is still processing. Please check Orders later."
-              );
-            }
-
-          }catch(error){
-
-            if(attempts >= 24){
-
-              clearInterval(timer);
-
-              showMessage(
-                "Unable to check payment status right now.",
-                "error"
-              );
-            }
-          }
-
-        },
-        5000
-      );
 
   }catch(error){
 
@@ -995,599 +906,581 @@ async function submitOrder(){
       "Unable to start payment. Please try again.",
       "error"
     );
+
   }
-}
-
-const name =
-document
-.getElementById("customerName")
-.value
-.trim();
-
-
-const phone =
-document
-.getElementById("customerPhone")
-.value
-.trim();
-
-
-const channel =
-document
-.getElementById("paymentNetwork")
-.value;
-
-
-if(!auth.currentUser){
-
-alert(
-"Please create an account or log in first."
-);
-
-showPage("account");
-
-return;
 
 }
 
 
-if(
-!selectedProduct ||
-!selectedPrice
-){
+async function verifyOtp(){
 
-showMessage(
-"Please select a product first.",
-"error"
-);
+  if(!pendingPayment){
 
-showPage("shop");
+    showMessage(
+      "No pending payment found.",
+      "error"
+    );
 
-return;
+    return;
 
-}
+  }
 
 
-if(!name || !phone){
-
-showMessage(
-"Please enter your full name and Ghana phone number.",
-"error"
-);
-
-return;
-
-}
+  const otp =
+  document
+  .getElementById("otpCode")
+  .value
+  .trim();
 
 
-if(!/^0\d{9}$/.test(phone)){
+  if(!/^\d{4,8}$/.test(otp)){
 
-showMessage(
-"Enter a valid Ghana phone number.",
-"error"
-);
+    showMessage(
+      "Enter the verification code sent to your phone.",
+      "error"
+    );
 
-return;
+    return;
 
-}
-
-
-showMessage(
-"Sending payment request..."
-);
+  }
 
 
-const externalref =
-makeReference();
+  showMessage(
+    "Verifying payment code..."
+  );
 
 
-try{
+  try{
+
+    const response =
+    await fetch(
+      MOOLRE_WORKER + "/pay",
+      {
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":
+          "application/json"
+        },
+
+        body:JSON.stringify({
+
+          product:
+          pendingPayment.product,
+
+          phone:
+          pendingPayment.phone,
+
+          channel:
+          pendingPayment.channel,
+
+          externalref:
+          pendingPayment.externalref,
+
+          otpcode:
+          otp
+
+        })
+
+      }
+    );
 
 
-const response =
-await fetch(
-MOOLRE_WORKER + "/pay",
-{
-
-method:"POST",
-
-headers:{
-"Content-Type":
-"application/json"
-},
-
-body:JSON.stringify({
-
-product:
-selectedProduct,
-
-phone:
-phone,
-
-channel:
-channel,
-
-externalref:
-externalref
-
-})
-
-});
+    const data =
+    await response.json();
 
 
-const data =
-await response.json();
+    if(
+      !response.ok ||
+      data.status != 1
+    ){
+
+      showMessage(
+
+        data.message ||
+        data.error ||
+        "Verification failed.",
+
+        "error"
+
+      );
+
+      return;
+
+    }
 
 
-if(
-!response.ok ||
-data.status != 1
-){
-
-showMessage(
-data.message ||
-data.error ||
-"Payment request could not be started.",
-"error"
-);
-
-return;
-
-}
+    document
+    .getElementById("otpBox")
+    .style.display = "none";
 
 
-showMessage(
-"Payment request sent. Approve the Mobile Money prompt on your phone.",
-"success"
-);
+    showMessage(
+      "Payment request accepted. Checking payment status...",
+      "success"
+    );
 
 
-try{
+    startPaymentCheck(
+      pendingPayment.externalref
+    );
 
-await db
-.collection("Orders")
-.doc(externalref)
-.set({
 
-orderId:
-externalref,
+  }catch(error){
 
-product:
-selectedProduct,
+    console.error(error);
 
-amount:
-selectedPrice,
+    showMessage(
+      "Unable to verify the payment code.",
+      "error"
+    );
 
-customerName:
-name,
-
-customerPhone:
-phone,
-
-customerEmail:
-auth.currentUser.email,
-
-paymentReference:
-externalref,
-
-status:
-"Payment initiated — awaiting confirmation",
-
-createdAt:
-firebase.firestore.FieldValue.serverTimestamp()
-
-});
-
-}catch(error){
-
-console.log(
-"Order record could not be saved:",
-error
-);
+  }
 
 }
 
 
-let attempts = 0;
+function startPaymentCheck(externalref){
+
+  let attempts = 0;
 
 
-const timer =
-setInterval(async function(){
+  const timer =
+  setInterval(
+    async function(){
 
-attempts++;
-
-
-try{
+      attempts++;
 
 
-const statusResponse =
-await fetch(
-MOOLRE_WORKER + "/status",
-{
+      try{
 
-method:"POST",
+        const response =
+        await fetch(
+          MOOLRE_WORKER + "/status",
+          {
 
-headers:{
-"Content-Type":
-"application/json"
-},
+            method:"POST",
 
-body:JSON.stringify({
-externalref:
-externalref
-})
+            headers:{
+              "Content-Type":
+              "application/json"
+            },
 
-});
+            body:JSON.stringify({
 
+              externalref:
+              externalref
 
-const statusData =
-await statusResponse.json();
+            })
 
-
-const tx =
-statusData &&
-statusData.data;
+          }
+        );
 
 
-if(
-statusData.status == 1 &&
-tx &&
-tx.txstatus == 1
-){
-
-clearInterval(timer);
+        const data =
+        await response.json();
 
 
-try{
-
-await db
-.collection("Orders")
-.doc(externalref)
-.update({
-
-status:
-"Payment confirmed"
-
-});
-
-}catch(error){
-
-console.log(
-"Order status update failed:",
-error
-);
-
-}
+        const tx =
+        data &&
+        data.data;
 
 
-showMessage(
-"Payment confirmed successfully.",
-"success"
-);
+        if(
+          data.status == 1 &&
+          tx &&
+          tx.txstatus == 1
+        ){
 
-return;
-
-}
-
-
-if(attempts >= 18){
-
-clearInterval(timer);
-
-showMessage(
-"Payment is still processing. Please check Orders later."
-);
-
-}
+          clearInterval(timer);
 
 
-}catch(error){
+          await saveOrder(
+            externalref
+          );
 
 
-if(attempts >= 18){
-
-clearInterval(timer);
-
-showMessage(
-"Unable to check payment status right now.",
-"error"
-);
-
-}
-
-}
+          showMessage(
+            "Payment confirmed successfully.",
+            "success"
+          );
 
 
-},5000);
+          pendingPayment = null;
+
+          return;
+
+        }
 
 
-}catch(error){
+        if(attempts >= 24){
 
-console.error(error);
+          clearInterval(timer);
 
-showMessage(
-"Unable to start payment. Please try again.",
-"error"
-);
 
-}
+          showMessage(
+            "Payment is still processing. Check your Orders later."
+          );
+
+        }
+
+
+      }catch(error){
+
+        console.error(error);
+
+
+        if(attempts >= 24){
+
+          clearInterval(timer);
+
+
+          showMessage(
+            "Unable to check payment status.",
+            "error"
+          );
+
+        }
+
+      }
+
+    },
+
+    5000
+
+  );
 
 }
 
 
+async function saveOrder(externalref){
 
-function signUp(){
+  if(!auth.currentUser){
 
-const email =
-document
-.getElementById("signupEmail")
-.value
-.trim();
+    return;
 
-
-const password =
-document
-.getElementById("signupPassword")
-.value;
+  }
 
 
-const message =
-document
-.getElementById("signupMessage");
+  await db
+  .collection("Orders")
+  .doc(externalref)
+  .set({
 
+    orderId:
+    externalref,
 
-if(!email || !password){
+    product:
+    selectedProduct,
 
-message.innerHTML =
-"<p class='error'>Please enter your email and password.</p>";
+    amount:
+    selectedPrice,
 
-return;
+    customerName:
+    document
+    .getElementById(
+      "customerName"
+    )
+    .value
+    .trim(),
 
-}
+    customerPhone:
+    document
+    .getElementById(
+      "customerPhone"
+    )
+    .value
+    .trim(),
 
+    customerEmail:
+    auth.currentUser.email,
 
-if(password.length < 6){
+    paymentReference:
+    externalref,
 
-message.innerHTML =
-"<p class='error'>Password must be at least 6 characters.</p>";
+    status:
+    "Payment confirmed",
 
-return;
+    createdAt:
+    firebase.firestore
+    .FieldValue
+    .serverTimestamp()
 
-}
-
-
-auth
-.createUserWithEmailAndPassword(
-email,
-password
-)
-
-.then(function(){
-
-message.innerHTML =
-"<p class='success'>Account created successfully.</p>";
-
-showPage("shop");
-
-})
-
-.catch(function(error){
-
-message.innerHTML =
-"<p class='error'>" +
-error.message +
-"</p>";
-
-});
+  });
 
 }
 
 
+async function signUp(){
 
-function loginUser(){
-
-const email =
-document
-.getElementById("loginEmail")
-.value
-.trim();
-
-
-const password =
-document
-.getElementById("loginPassword")
-.value;
+  const email =
+  document
+  .getElementById(
+    "signupEmail"
+  )
+  .value
+  .trim();
 
 
-const message =
-document
-.getElementById("loginMessage");
+  const password =
+  document
+  .getElementById(
+    "signupPassword"
+  )
+  .value;
 
 
-if(!email || !password){
+  if(!email || !password){
 
-message.innerHTML =
-"<p class='error'>Please enter your email and password.</p>";
+    alert(
+      "Enter your email and password."
+    );
 
-return;
+    return;
 
-}
+  }
 
 
-auth
-.signInWithEmailAndPassword(
-email,
-password
-)
+  try{
 
-.then(function(){
+    await auth
+    .createUserWithEmailAndPassword(
+      email,
+      password
+    );
 
-message.innerHTML =
-"<p class='success'>Login successful.</p>";
 
-showPage("shop");
+    alert(
+      "Account created successfully."
+    );
 
-})
 
-.catch(function(error){
+  }catch(error){
 
-message.innerHTML =
-"<p class='error'>" +
-error.message +
-"</p>";
+    alert(error.message);
 
-});
+  }
 
 }
 
 
+async function login(){
 
-function logout(){
-
-auth.signOut();
-
-}
-
-
-
-function loadOrders(){
-
-if(!auth.currentUser){
-
-document
-.getElementById("orderBox")
-.innerHTML =
-"Log in to view your orders.";
-
-return;
-
-}
+  const email =
+  document
+  .getElementById(
+    "loginEmail"
+  )
+  .value
+  .trim();
 
 
-db
-.collection("Orders")
-.where(
-"customerEmail",
-"==",
-auth.currentUser.email
-)
-.get()
+  const password =
+  document
+  .getElementById(
+    "loginPassword"
+  )
+  .value;
 
-.then(function(snapshot){
 
-if(snapshot.empty){
+  try{
 
-document
-.getElementById("orderBox")
-.innerHTML =
-"No orders yet.";
+    await auth
+    .signInWithEmailAndPassword(
+      email,
+      password
+    );
 
-return;
+
+    alert(
+      "Logged in successfully."
+    );
+
+
+  }catch(error){
+
+    alert(error.message);
+
+  }
 
 }
 
 
-let html = "";
+async function logout(){
 
+  await auth.signOut();
 
-snapshot.forEach(function(doc){
-
-const order =
-doc.data();
-
-
-html +=
-"<div class='card'>" +
-
-"<h3>" +
-order.orderId +
-"</h3>" +
-
-"<p><b>Product:</b> " +
-order.product +
-"</p>" +
-
-"<p><b>Amount:</b> GH₵" +
-order.amount +
-"</p>" +
-
-"<p><b>Status:</b> " +
-order.status +
-"</p>" +
-
-"</div>";
-
-});
-
-
-document
-.getElementById("orderBox")
-.innerHTML =
-html;
-
-})
-
-
-.catch(function(error){
-
-console.error(error);
-
-document
-.getElementById("orderBox")
-.innerHTML =
-"Unable to load orders right now.";
-
-});
+  showPage("home");
 
 }
-
 
 
 auth.onAuthStateChanged(
 function(user){
 
-const loggedOut =
-document.getElementById("loggedOut");
-
-const loggedIn =
-document.getElementById("loggedIn");
-
-const userEmail =
-document.getElementById("userEmail");
+  const status =
+  document
+  .getElementById(
+    "accountStatus"
+  );
 
 
-if(user){
+  const forms =
+  document
+  .getElementById(
+    "authForms"
+  );
 
-loggedOut.style.display =
-"none";
 
-loggedIn.style.display =
-"block";
+  const logoutButton =
+  document
+  .getElementById(
+    "logoutButton"
+  );
 
-userEmail.textContent =
-user.email;
 
-loadOrders();
+  if(user){
 
-}else{
+    status.textContent =
+    "Logged in as " +
+    user.email;
 
-loggedOut.style.display =
-"block";
 
-loggedIn.style.display =
-"none";
+    forms.style.display =
+    "none";
 
-userEmail.textContent =
-"";
 
-document
-.getElementById("orderBox")
-.innerHTML =
-"Log in to view your orders.";
+    logoutButton.style.display =
+    "block";
+
+
+  }else{
+
+    status.textContent =
+    "Not logged in.";
+
+
+    forms.style.display =
+    "block";
+
+
+    logoutButton.style.display =
+    "none";
+
+  }
+
+});
+
+
+async function loadOrders(){
+
+  const list =
+  document
+  .getElementById(
+    "ordersList"
+  );
+
+
+  if(!auth.currentUser){
+
+    list.innerHTML =
+    '<div class="message">Please log in to view your orders.</div>';
+
+    return;
+
+  }
+
+
+  list.innerHTML =
+  '<div class="message">Loading orders...</div>';
+
+
+  try{
+
+    const snapshot =
+    await db
+    .collection("Orders")
+    .where(
+      "customerEmail",
+      "==",
+      auth.currentUser.email
+    )
+    .get();
+
+
+    if(snapshot.empty){
+
+      list.innerHTML =
+      '<div class="message">No orders yet.</div>';
+
+      return;
+
+    }
+
+
+    list.innerHTML = "";
+
+
+    snapshot.forEach(
+    function(doc){
+
+      const order =
+      doc.data();
+
+
+      const div =
+      document.createElement(
+        "div"
+      );
+
+
+      div.className =
+      "order";
+
+
+      div.innerHTML = `
+
+        <strong>
+        ${order.product || ""}
+        </strong>
+
+        <p>
+        Amount:
+        GH₵${order.amount || ""}
+        </p>
+
+        <p>
+        Status:
+        ${order.status || ""}
+        </p>
+
+        <p class="small">
+        Reference:
+        ${order.orderId || ""}
+        </p>
+
+      `;
+
+
+      list.appendChild(div);
+
+    });
+
+
+  }catch(error){
+
+    console.error(error);
+
+    list.innerHTML =
+    '<div class="message error">Unable to load orders.</div>';
+
+  }
 
 }
 
-});
+
+showPage("home");
 
 </script>
 
