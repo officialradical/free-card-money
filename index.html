@@ -556,14 +556,7 @@ function showPage(id){
 
 function buyProduct(name,price){
 
-  if(!auth.currentUser){
-
-    alert("Please create an account or log in first.");
-
-    showPage("account");
-
-    return;
-  }
+  
 
   selectedProduct = name;
   selectedPrice = price;
