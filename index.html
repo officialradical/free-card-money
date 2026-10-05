@@ -250,7 +250,7 @@ footer{
 
   
 
-<button class="buy" onclick="window.location.href='https://pos.moolre.com/VjHihb1tCRoNkQwlSGL57aYA2scum8'">
+<button class="buy" onclick="buyProduct('Digital Card — Premium',300)">
   BUY NOW
 </button>
 </div>
@@ -261,6 +261,7 @@ footer{
 
 
 <section id="payment" class="panel">
+
   <div class="container">
 
     <h1>Complete Order</h1>
@@ -268,35 +269,62 @@ footer{
     <div class="card">
 
       <p>Product</p>
+
       <h2 id="productName">—</h2>
 
       <p>Amount</p>
-      <div class="price" id="productPrice">GH₵0</div>
+
+      <div class="price" id="productPrice">
+        GH₵0
+      </div>
 
       <div class="notice">
 
-        <b>Pay via Telecel MoMo</b><br><br>
+        <b>Pay with Mobile Money</b>
 
-        Name:
-        <b>DUANE MANU</b><br>
+        <br><br>
 
-        Number:
-        <b>0208424350</b>
-
-        <button
-          class="secondary"
-          type="button"
-          onclick="copyMomo()"
-        >
-          COPY MoMo NUMBER
-        </button>
+        Enter the MoMo number that
+        should receive the payment prompt.
 
         <p class="small">
-          After making your payment, enter your transaction/reference
-          number below.
+          The amount is automatically set by
+          the product. You cannot change it.
         </p>
 
       </div>
+
+      <label>
+        Mobile Money network
+      </label>
+
+      <select
+        id="paymentNetwork"
+        style="
+          width:100%;
+          padding:14px;
+          margin:8px 0;
+          background:#0a111c;
+          border:1px solid #304057;
+          border-radius:10px;
+          color:#fff;
+          font-size:15px;
+        "
+      >
+
+        <option value="13">
+          MTN Mobile Money
+        </option>
+
+        <option value="6">
+          Telecel Cash
+        </option>
+
+        <option value="7">
+          AT Money
+        </option>
+
+      </select>
 
       <input
         id="customerName"
@@ -305,27 +333,38 @@ footer{
 
       <input
         id="customerPhone"
-        placeholder="Your phone number"
-      >
-
-      <input
-        id="reference"
-        placeholder="MoMo transaction/reference number"
+        type="tel"
+        inputmode="numeric"
+        placeholder="Your MoMo number"
       >
 
       <button
         class="buy"
         onclick="submitOrder()"
       >
-        SUBMIT ORDER
+        PAY NOW
       </button>
 
+      <div
+        id="paymentMessage"
+        class="notice"
+        style="display:none"
+      ></div>
+
       <p class="small">
-        Orders remain pending until payment is verified.
+
+        After tapping PAY NOW, approve the
+        Mobile Money prompt on your phone.
+
+        Payment must be confirmed before
+        delivery.
+
       </p>
 
     </div>
+
   </div>
+
 </section>
 
 
@@ -480,6 +519,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+const MOOLRE_WORKER = "https://curly-meadow-bac6.officialradical7.workers.dev";
 const auth = firebase.auth();
 const db = firebase.firestore();
 
@@ -736,7 +776,269 @@ auth.onAuthStateChanged(function(user){
 });
 
 
-function submitOrder(){
+function showPaymentMessage(text, type){
+
+  const box =
+    document.getElementById("paymentMessage");
+
+  box.style.display = "block";
+  box.className = "notice " + (type || "");
+  box.textContent = text;
+}
+
+
+async function submitOrder(){
+
+  if(!auth.currentUser){
+
+    alert("Please log in before placing an order.");
+    showPage("account");
+
+    return;
+  }
+
+
+  const name =
+    document
+      .getElementById("customerName")
+      .value
+      .trim();
+
+
+  const phone =
+    document
+      .getElementById("customerPhone")
+      .value
+      .trim();
+
+
+  const channel =
+    document
+      .getElementById("paymentNetwork")
+      .value;
+
+
+  if(!name || !phone){
+
+    alert(
+      "Please enter your full name and MoMo number."
+    );
+
+    return;
+  }
+
+
+  if(!selectedProduct || !selectedPrice){
+
+    alert("Please select a product first.");
+    showPage("shop");
+
+    return;
+  }
+
+
+  showPaymentMessage(
+    "Sending payment request..."
+  );
+
+
+  const externalref =
+    "FCM-" + crypto.randomUUID();
+
+
+  try {
+
+    const response =
+      await fetch(
+        MOOLRE_WORKER + "/pay",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+
+            product: selectedProduct,
+            phone: phone,
+            channel: channel,
+            externalref: externalref
+
+          })
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if(!response.ok || data.status !== 1){
+
+      showPaymentMessage(
+        data.message ||
+        data.error ||
+        "Payment request could not be started.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    await db
+      .collection("Orders")
+      .doc(externalref)
+      .set({
+
+        orderId: externalref,
+
+        product: selectedProduct,
+
+        amount: selectedPrice,
+
+        customerName: name,
+
+        customerPhone: phone,
+
+        customerEmail:
+          auth.currentUser.email,
+
+        paymentReference:
+          externalref,
+
+        status:
+          "Payment initiated — awaiting confirmation",
+
+        createdAt:
+          firebase.firestore
+            .FieldValue
+            .serverTimestamp()
+
+      });
+
+
+    showPaymentMessage(
+      "Payment request sent. Approve the Mobile Money prompt on your phone.",
+      "success"
+    );
+
+
+    let attempts = 0;
+
+
+    const timer =
+      setInterval(
+        async function(){
+
+          attempts++;
+
+
+          try {
+
+            const statusResponse =
+              await fetch(
+                MOOLRE_WORKER + "/status",
+                {
+                  method: "POST",
+
+                  headers: {
+                    "Content-Type":
+                      "application/json"
+                  },
+
+                  body:
+                    JSON.stringify({
+                      externalref:
+                        externalref
+                    })
+                }
+              );
+
+
+            const statusData =
+              await statusResponse.json();
+
+
+            const tx =
+              statusData &&
+              statusData.data;
+
+
+            if(
+              statusData.status === 1 &&
+              tx &&
+              tx.txstatus === 1
+            ){
+
+              clearInterval(timer);
+
+
+              await db
+                .collection("Orders")
+                .doc(externalref)
+                .update({
+
+                  status:
+                    "Payment confirmed"
+
+                });
+
+
+              showPaymentMessage(
+                "Payment confirmed successfully.",
+                "success"
+              );
+
+              return;
+            }
+
+
+            if(attempts >= 18){
+
+              clearInterval(timer);
+
+              showPaymentMessage(
+                "Payment is still processing. Please check your Orders page.",
+                ""
+              );
+
+            }
+
+          } catch(error){
+
+            if(attempts >= 18){
+
+              clearInterval(timer);
+
+              showPaymentMessage(
+                "Payment may still be processing. Please check your Orders page.",
+                ""
+              );
+
+            }
+
+          }
+
+        },
+        5000
+      );
+
+
+  } catch(error){
+
+    console.error(error);
+
+    showPaymentMessage(
+      "Could not connect to the payment service. Please try again.",
+      "error"
+    );
+
+  }
+
+}
 
   if(!auth.currentUser){
 
