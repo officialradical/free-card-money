@@ -105,7 +105,9 @@ module.exports = async function handler(req, res) {
 
     const data = await response.json();
 
-    return json(res, response.status, data);
+console.log("Moolre payment response:", data);
+
+return json(res, response.status, data);
 
   } catch (error) {
 
