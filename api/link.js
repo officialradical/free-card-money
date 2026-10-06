@@ -16,6 +16,7 @@ const PRODUCTS = {
 };
 
 module.exports = async function handler(req, res) {
+
   cors(res);
 
   if (req.method === "OPTIONS") {
@@ -30,7 +31,12 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const { product, externalref, email } = req.body || {};
+
+    const {
+      product,
+      externalref,
+      email
+    } = req.body || {};
 
     if (!product || !PRODUCTS[product]) {
       return json(res, 400, {
@@ -46,6 +52,10 @@ module.exports = async function handler(req, res) {
       });
     }
 
+    const returnUrl =
+      "https://freecard.store/?payment_ref=" +
+      encodeURIComponent(externalref);
+
     const response = await fetch(
       "https://api.moolre.com/embed/link",
       {
@@ -53,36 +63,71 @@ module.exports = async function handler(req, res) {
 
         headers: {
           "Content-Type": "application/json",
-          "X-API-USER": (process.env.MOOLRE_USER || "").trim(),
-          "X-API-PUBKEY": (process.env.MOOLRE_PUBLIC_KEY || "").replace(/\s+/g, "")
+          "X-API-USER":
+            (process.env.MOOLRE_USER || "").trim(),
+          "X-API-PUBKEY":
+            (process.env.MOOLRE_PUBLIC_KEY || "")
+              .replace(/\s+/g, "")
         },
 
         body: JSON.stringify({
+
           type: 1,
-          amount: String(PRODUCTS[product]),
-          email: email || "payments@freecard.store",
-          externalref: externalref,
-          reusable: "0",
-          currency: "GHS",
-          accountnumber: (process.env.MOOLRE_ACCOUNT_NUMBER || "").trim(),
-          redirect: "https://freecard.store/"
+
+          amount:
+            String(PRODUCTS[product]),
+
+          email:
+            email ||
+            "payments@freecard.store",
+
+          externalref:
+            externalref,
+
+          reusable:
+            "0",
+
+          currency:
+            "GHS",
+
+          accountnumber:
+            (process.env.MOOLRE_ACCOUNT_NUMBER || "")
+              .trim(),
+
+          redirect:
+            returnUrl
+
         })
       }
     );
 
-    const data = await response.json();
+    const data =
+      await response.json();
 
-    console.log("Moolre link response:", data);
+    console.log(
+      "Moolre link response:",
+      data
+    );
 
-    return json(res, response.status, data);
+    return json(
+      res,
+      response.status,
+      data
+    );
 
   } catch (error) {
 
-    console.error("Moolre link error:", error);
+    console.error(
+      "Moolre link error:",
+      error
+    );
 
     return json(res, 500, {
       status: 0,
-      message: "Payment link service error."
+      message:
+        "Payment link service error."
     });
+
   }
-}; 
+
+};
