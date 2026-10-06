@@ -626,7 +626,6 @@ function showMessage(message, type) {
 /* -------------------------
    PAYMENT
 ------------------------- */
-
 async function submitOrder() {
 
   if (!auth.currentUser) {
@@ -746,12 +745,7 @@ async function submitOrder() {
     );
 
     showMessage(
-      "Unable to connect to Moolre.",
-      "error"
-    );
-  }
-}
-  if (!auth.currentUser) {
+      "Unable 
 
     alert(
       "Please log in before making a payment."
