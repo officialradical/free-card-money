@@ -7,186 +7,181 @@
 <title>FREE CARD MONEY</title>
 
 <style>
-*{
-  box-sizing:border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#0b0b0f;
-  color:#fff;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b0b0f;
+  color: #fff;
 }
 
-header{
-  background:#11131a;
-  padding:18px;
-  position:sticky;
-  top:0;
-  z-index:10;
-  border-bottom:1px solid #292d38;
+header {
+  background: #11131a;
+  padding: 18px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid #292d38;
 }
 
-.logo{
-  font-size:22px;
-  font-weight:bold;
-  text-align:center;
-  margin-bottom:15px;
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
-nav{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  flex-wrap:wrap;
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-nav button{
-  background:#1b1e27;
-  color:#fff;
-  border:0;
-  padding:10px 14px;
-  border-radius:8px;
+nav button {
+  background: #1b1e27;
+  color: #fff;
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-nav button:hover{
-  background:#303541;
+nav button:hover {
+  background: #303541;
 }
 
-.panel{
-  display:none;
-  padding:35px 18px;
+.panel {
+  display: none;
+  padding: 35px 18px;
 }
 
-.panel.active{
-  display:block;
+.panel.active {
+  display: block;
 }
 
-.container{
-  max-width:900px;
-  margin:auto;
+.container {
+  max-width: 900px;
+  margin: auto;
 }
 
-.hero{
-  text-align:center;
-  padding:50px 10px;
+.hero {
+  text-align: center;
+  padding: 50px 10px;
 }
 
-.hero h1{
-  font-size:40px;
-  margin-bottom:10px;
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
 }
 
-.hero p{
-  color:#b8bdc9;
+.hero p {
+  color: #b8bdc9;
 }
 
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:18px;
-  margin-top:25px;
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 25px;
 }
 
-.card{
-  background:#151820;
-  border:1px solid #292d38;
-  border-radius:15px;
-  padding:24px;
-  text-align:center;
+.card {
+  background: #151820;
+  border: 1px solid #292d38;
+  border-radius: 15px;
+  padding: 24px;
+  text-align: center;
 }
 
-.card h2{
-  font-size:20px;
+.card h2 {
+  font-size: 20px;
 }
 
-.price{
-  font-size:28px;
-  font-weight:bold;
-  margin:18px 0;
+.price {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 18px 0;
 }
 
-.buy{
-  width:100%;
-  padding:13px;
-  border:0;
-  border-radius:9px;
-  background:#19c37d;
-  color:#fff;
-  font-weight:bold;
-  font-size:16px;
+.buy {
+  width: 100%;
+  padding: 13px;
+  border: 0;
+  border-radius: 9px;
+  background: #19c37d;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.buy:active{
-  transform:scale(.98);
+.buy:active {
+  transform: scale(.98);
 }
 
-input,select{
-  width:100%;
-  padding:13px;
-  margin:8px 0 14px;
-  border-radius:8px;
-  border:1px solid #343945;
-  background:#101219;
-  color:#fff;
+input,
+select {
+  width: 100%;
+  padding: 13px;
+  margin: 8px 0 14px;
+  border-radius: 8px;
+  border: 1px solid #343945;
+  background: #101219;
+  color: #fff;
 }
 
-label{
-  display:block;
-  margin-top:10px;
-  color:#d9dce3;
+label {
+  display: block;
+  margin-top: 10px;
+  color: #d9dce3;
 }
 
-.box{
-  max-width:500px;
-  margin:auto;
-  background:#151820;
-  padding:25px;
-  border-radius:15px;
-  border:1px solid #292d38;
+.box {
+  max-width: 500px;
+  margin: auto;
+  background: #151820;
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid #292d38;
 }
 
-.message{
-  margin:15px 0;
-  padding:12px;
-  border-radius:8px;
-  background:#20242d;
-  color:#fff;
+.message {
+  margin: 15px 0;
+  padding: 12px;
+  border-radius: 8px;
+  background: #20242d;
+  color: #fff;
 }
 
-.message.error{
-  background:#4a1e24;
+.message.error {
+  background: #4a1e24;
 }
 
-.message.success{
-  background:#174b37;
+.message.success {
+  background: #174b37;
 }
 
-.order{
-  background:#151820;
-  border:1px solid #292d38;
-  padding:18px;
-  border-radius:12px;
-  margin:12px 0;
+.order {
+  background: #151820;
+  border: 1px solid #292d38;
+  padding: 18px;
+  border-radius: 12px;
+  margin: 12px 0;
 }
 
-.small{
-  color:#aeb4c0;
-  font-size:14px;
+.small {
+  color: #aeb4c0;
+  font-size: 14px;
 }
 
-#otpBox{
-  display:none;
-  margin-top:20px;
-  padding:18px;
-  background:#20242d;
-  border-radius:10px;
-}
-
-footer{
-  text-align:center;
-  color:#858b98;
-  padding:35px;
+footer {
+  text-align: center;
+  color: #858b98;
+  padding: 35px;
 }
 </style>
 </head>
@@ -240,8 +235,7 @@ Digital products made simple.
 
 <br>
 
-<button class="buy"
-onclick="showPage('shop')">
+<button class="buy" onclick="showPage('shop')">
 SHOP NOW
 </button>
 
@@ -266,7 +260,6 @@ Choose a product and place your order.
 
 <div class="products">
 
-
 <div class="card">
 
 <h2>
@@ -279,7 +272,7 @@ GH₵100
 
 <button
 class="buy"
-onclick="buyProduct('Digital Card — Basic',100)">
+onclick="buyProduct('Digital Card — Basic', 100)">
 BUY NOW
 </button>
 
@@ -298,7 +291,7 @@ GH₵200
 
 <button
 class="buy"
-onclick="buyProduct('Digital Card — Plus',200)">
+onclick="buyProduct('Digital Card — Plus', 200)">
 BUY NOW
 </button>
 
@@ -317,12 +310,11 @@ GH₵300
 
 <button
 class="buy"
-onclick="buyProduct('Digital Card — Premium',300)">
+onclick="buyProduct('Digital Card — Premium', 300)">
 BUY NOW
 </button>
 
 </div>
-
 
 </div>
 
@@ -341,8 +333,7 @@ BUY NOW
 
 <h1>Account</h1>
 
-<div id="accountStatus"
-class="message">
+<div id="accountStatus" class="message">
 Not logged in.
 </div>
 
@@ -454,24 +445,23 @@ Mobile Money network
 
 <select id="paymentNetwork">
 
-<option value="13">
+<option value="MTN">
 MTN
 </option>
 
-<option value="6">
+<option value="Telecel">
 Telecel
 </option>
 
-<option value="7">
+<option value="AirtelTigo">
 AirtelTigo
 </option>
 
 </select>
 
 
-<div
-id="paymentMessage"
-class="message">
+<div id="paymentMessage" class="message">
+Payment gateway is not connected.
 </div>
 
 
@@ -480,35 +470,6 @@ class="buy"
 onclick="submitOrder()">
 PAY NOW
 </button>
-
-
-<!-- OTP -->
-
-<div id="otpBox">
-
-<h3>
-Verification code
-</h3>
-
-<p class="small">
-Moolre has sent a verification code to your phone.
-Enter the code below.
-</p>
-
-<input
-id="otpCode"
-type="text"
-inputmode="numeric"
-autocomplete="one-time-code"
-placeholder="Enter verification code">
-
-<button
-class="buy"
-onclick="verifyOtp()">
-VERIFY CODE
-</button>
-
-</div>
 
 </div>
 
@@ -542,6 +503,8 @@ Please log in to view your orders.
 FREE CARD MONEY
 </footer>
 
+
+<!-- FIREBASE -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
@@ -580,138 +543,93 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const auth =
-firebase.auth();
+const auth = firebase.auth();
 
-const db =
-firebase.firestore();
-
-
-const MOOLRE_WORKER =
-"https://curly-meadow-bac6.officialradical7.workers.dev";
+const db = firebase.firestore();
 
 
 let selectedProduct = "";
 
 let selectedPrice = 0;
 
-let pendingPayment = null;
 
+/* -------------------------
+   PAGE NAVIGATION
+------------------------- */
 
-function showPage(id){
+function showPage(id) {
 
   document
-  .querySelectorAll(".panel")
-  .forEach(function(panel){
+    .querySelectorAll(".panel")
+    .forEach(function(panel) {
+      panel.classList.remove("active");
+    });
 
-    panel.classList.remove("active");
+  const page = document.getElementById(id);
 
-  });
-
-
-  const page =
-  document.getElementById(id);
-
-  if(!page){
-
-    console.error(
-      "Page not found:",
-      id
-    );
-
+  if (!page) {
+    console.error("Page not found:", id);
     return;
-
   }
-
 
   page.classList.add("active");
 
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 
-
-  if(id === "orders"){
-
+  if (id === "orders") {
     loadOrders();
-
   }
-
 }
 
 
-function buyProduct(name,price){
+/* -------------------------
+   SELECT PRODUCT
+------------------------- */
+
+function buyProduct(name, price) {
 
   selectedProduct = name;
 
   selectedPrice = price;
 
+  document.getElementById("productName").textContent = name;
 
-  document
-  .getElementById("productName")
-  .textContent = name;
+  document.getElementById("productPrice").textContent =
+    "GH₵" + price;
 
+  document.getElementById("paymentMessage").textContent =
+    "Payment gateway is not connected.";
 
-  document
-  .getElementById("productPrice")
-  .textContent =
-  "GH₵" + price;
-
-
-  document
-  .getElementById("paymentMessage")
-  .innerHTML = "";
-
-
-  document
-  .getElementById("otpBox")
-  .style.display = "none";
-
-
-  document
-  .getElementById("otpCode")
-  .value = "";
-
-
-  pendingPayment = null;
-
+  document.getElementById("paymentMessage").className =
+    "message";
 
   showPage("payment");
-
 }
 
 
-function showMessage(message,type){
+/* -------------------------
+   PAYMENT MESSAGE
+------------------------- */
+
+function showMessage(message, type) {
 
   const box =
-  document.getElementById(
-    "paymentMessage"
-  );
+    document.getElementById("paymentMessage");
 
   box.textContent = message;
 
   box.className =
-  "message " + (type || "");
-
+    "message " + (type || "");
 }
 
 
-function makeReference(){
+/* -------------------------
+   PAYMENT
+------------------------- */
 
-  return (
-    "FCM-" +
-    Date.now() +
-    "-" +
-    Math.random()
-      .toString(36)
-      .substring(2,8)
-      .toUpperCase()
-  );
+async function submitOrder() {
 
-}
-
-
-async function submitOrder(){
-
-  if(!auth.currentUser){
+  if (!auth.currentUser) {
 
     alert(
       "Please log in before making a payment."
@@ -720,31 +638,30 @@ async function submitOrder(){
     showPage("account");
 
     return;
-
   }
 
 
   const name =
-  document
-  .getElementById("customerName")
-  .value
-  .trim();
+    document
+      .getElementById("customerName")
+      .value
+      .trim();
 
 
   const phone =
-  document
-  .getElementById("customerPhone")
-  .value
-  .trim();
+    document
+      .getElementById("customerPhone")
+      .value
+      .trim();
 
 
-  const channel =
-  document
-  .getElementById("paymentNetwork")
-  .value;
+  const network =
+    document
+      .getElementById("paymentNetwork")
+      .value;
 
 
-  if(!name){
+  if (!name) {
 
     showMessage(
       "Please enter your full name.",
@@ -752,11 +669,10 @@ async function submitOrder(){
     );
 
     return;
-
   }
 
 
-  if(!/^0\d{9}$/.test(phone)){
+  if (!/^0\d{9}$/.test(phone)) {
 
     showMessage(
       "Enter a valid Ghana phone number.",
@@ -764,11 +680,10 @@ async function submitOrder(){
     );
 
     return;
-
   }
 
 
-  if(!selectedProduct){
+  if (!selectedProduct) {
 
     showMessage(
       "Please select a product.",
@@ -776,490 +691,67 @@ async function submitOrder(){
     );
 
     return;
-
   }
 
 
-  const externalref =
-  makeReference();
+  /*
+    Cloudflare Worker and Moolre API calls
+    have been completely removed.
 
-
-  pendingPayment = {
-
-    product:
-    selectedProduct,
-
-    price:
-    selectedPrice,
-
-    name:
-    name,
-
-    phone:
-    phone,
-
-    channel:
-    channel,
-
-    externalref:
-    externalref
-
-  };
-
+    Do NOT put private Moolre/API credentials
+    directly inside this HTML file.
+  */
 
   showMessage(
-    "Sending payment request..."
+    "Payment gateway is not connected yet. Your payment details were not submitted.",
+    "error"
   );
 
-
-  try{
-
-    const response =
-    await fetch(
-      MOOLRE_WORKER + "/pay",
-      {
-
-        method:"POST",
-
-        headers:{
-          "Content-Type":
-          "application/json"
-        },
-
-        body:JSON.stringify({
-
-          product:
-          selectedProduct,
-
-          phone:
-          phone,
-
-          channel:
-          channel,
-
-          externalref:
-          externalref
-
-        })
-
-      }
-    );
-
-
-    const data =
-    await response.json();
-
-
-    if(data.code === "TP14"){
-
-      document
-      .getElementById("otpBox")
-      .style.display = "block";
-
-
-      showMessage(
-        "A verification code was sent to your phone."
-      );
-
-
-      return;
-
-    }
-
-
-    if(
-      !response.ok ||
-      data.status != 1
-    ){
-
-      showMessage(
-
-        data.message ||
-        data.error ||
-        "Unable to start payment.",
-
-        "error"
-
-      );
-
-      return;
-
-    }
-
-
-    showMessage(
-      "Payment request sent. Approve the Mobile Money request on your phone.",
-      "success"
-    );
-
-
-    startPaymentCheck(
-      externalref
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    showMessage(
-      "Unable to start payment. Please try again.",
-      "error"
-    );
-
-  }
-
 }
 
 
-async function verifyOtp(){
-
-  if(!pendingPayment){
-
-    showMessage(
-      "No pending payment found.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  const otp =
-  document
-  .getElementById("otpCode")
-  .value
-  .trim();
-
-
-  if(!/^\d{4,8}$/.test(otp)){
-
-    showMessage(
-      "Enter the verification code sent to your phone.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  showMessage(
-    "Verifying payment code..."
-  );
-
-
-  try{
-
-    const response =
-    await fetch(
-      MOOLRE_WORKER + "/pay",
-      {
-
-        method:"POST",
-
-        headers:{
-          "Content-Type":
-          "application/json"
-        },
-
-        body:JSON.stringify({
-
-          product:
-          pendingPayment.product,
-
-          phone:
-          pendingPayment.phone,
-
-          channel:
-          pendingPayment.channel,
-
-          externalref:
-          pendingPayment.externalref,
-
-          otpcode:
-          otp
-
-        })
-
-      }
-    );
-
-
-    const data =
-    await response.json();
-
-
-    if(
-      !response.ok ||
-      data.status != 1
-    ){
-
-      showMessage(
-
-        data.message ||
-        data.error ||
-        "Verification failed.",
-
-        "error"
-
-      );
-
-      return;
-
-    }
-
-
-    document
-    .getElementById("otpBox")
-    .style.display = "none";
-
-
-    showMessage(
-      "Payment request accepted. Checking payment status...",
-      "success"
-    );
-
-
-    startPaymentCheck(
-      pendingPayment.externalref
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    showMessage(
-      "Unable to verify the payment code.",
-      "error"
-    );
-
-  }
-
-}
-
-
-function startPaymentCheck(externalref){
-
-  let attempts = 0;
-
-  const timer =
-  setInterval(
-    async function(){
-
-      attempts++;
-
-      try{
-
-        const response =
-        await fetch(
-          MOOLRE_WORKER + "/status",
-          {
-            method:"POST",
-            headers:{
-              "Content-Type":"application/json"
-            },
-            body:JSON.stringify({
-              externalref: externalref
-            })
-          }
-        );
-
-        const raw =
-        await response.text();
-
-        let data;
-
-        try{
-          data = JSON.parse(raw);
-        }catch(error){
-          throw new Error(
-            "Status server returned invalid data."
-          );
-        }
-
-        console.log(
-          "Moolre payment status:",
-          data
-        );
-
-        const tx =
-          data &&
-          data.data;
-
-        const txstatus =
-          tx &&
-          tx.txstatus;
-
-        if(
-          response.ok &&
-          data.status == 1 &&
-          String(txstatus) === "1"
-        ){
-
-          clearInterval(timer);
-
-          await saveOrder(
-            externalref
-          );
-
-          showMessage(
-            "Payment confirmed successfully.",
-            "success"
-          );
-
-          pendingPayment = null;
-
-          return;
-        }
-
-        if(attempts >= 24){
-
-          clearInterval(timer);
-
-          showMessage(
-            "Payment status: " +
-            (data.code || "Unknown") +
-            " — " +
-            (data.message ||
-             "Payment is still processing."),
-            "error"
-          );
-
-          return;
-        }
-
-      }catch(error){
-
-        console.error(
-          "Payment status error:",
-          error
-        );
-
-        if(attempts >= 24){
-
-          clearInterval(timer);
-
-          showMessage(
-            "Unable to check payment status: " +
-            error.message,
-            "error"
-          );
-
-        }
-
-      }
-
-    },
-    5000
-  );
-}
-
-async function saveOrder(externalref){
-
-  if(!auth.currentUser){
-
-    return;
-
-  }
-
-
-  await db
-  .collection("Orders")
-  .doc(externalref)
-  .set({
-
-    orderId:
-    externalref,
-
-    product:
-    selectedProduct,
-
-    amount:
-    selectedPrice,
-
-    customerName:
-    document
-    .getElementById(
-      "customerName"
-    )
-    .value
-    .trim(),
-
-    customerPhone:
-    document
-    .getElementById(
-      "customerPhone"
-    )
-    .value
-    .trim(),
-
-    customerEmail:
-    auth.currentUser.email,
-
-    paymentReference:
-    externalref,
-
-    status:
-    "Payment confirmed",
-
-    createdAt:
-    firebase.firestore
-    .FieldValue
-    .serverTimestamp()
-
-  });
-
-}
-
-
-async function signUp(){
+/* -------------------------
+   SIGN UP
+------------------------- */
+
+async function signUp() {
 
   const email =
-  document
-  .getElementById(
-    "signupEmail"
-  )
-  .value
-  .trim();
+    document
+      .getElementById("signupEmail")
+      .value
+      .trim();
 
 
   const password =
-  document
-  .getElementById(
-    "signupPassword"
-  )
-  .value;
+    document
+      .getElementById("signupPassword")
+      .value;
 
 
-  if(!email || !password){
+  if (!email || !password) {
 
     alert(
       "Enter your email and password."
     );
 
     return;
-
   }
 
 
-  try{
+  try {
 
     await auth
-    .createUserWithEmailAndPassword(
-      email,
-      password
-    );
-
+      .createUserWithEmailAndPassword(
+        email,
+        password
+      );
 
     alert(
       "Account created successfully."
     );
 
-
-  }catch(error){
+  } catch (error) {
 
     alert(error.message);
 
@@ -1268,40 +760,48 @@ async function signUp(){
 }
 
 
-async function login(){
+/* -------------------------
+   LOGIN
+------------------------- */
+
+async function login() {
 
   const email =
-  document
-  .getElementById(
-    "loginEmail"
-  )
-  .value
-  .trim();
+    document
+      .getElementById("loginEmail")
+      .value
+      .trim();
 
 
   const password =
-  document
-  .getElementById(
-    "loginPassword"
-  )
-  .value;
+    document
+      .getElementById("loginPassword")
+      .value;
 
 
-  try{
+  if (!email || !password) {
 
-    await auth
-    .signInWithEmailAndPassword(
-      email,
-      password
+    alert(
+      "Enter your email and password."
     );
 
+    return;
+  }
+
+
+  try {
+
+    await auth
+      .signInWithEmailAndPassword(
+        email,
+        password
+      );
 
     alert(
       "Logged in successfully."
     );
 
-
-  }catch(error){
+  } catch (error) {
 
     alert(error.message);
 
@@ -1310,160 +810,163 @@ async function login(){
 }
 
 
-async function logout(){
+/* -------------------------
+   LOG OUT
+------------------------- */
 
-  await auth.signOut();
+async function logout() {
 
-  showPage("home");
+  try {
+
+    await auth.signOut();
+
+    showPage("home");
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
 
 }
 
 
-auth.onAuthStateChanged(
-function(user){
+/* -------------------------
+   AUTH STATE
+------------------------- */
+
+auth.onAuthStateChanged(function(user) {
 
   const status =
-  document
-  .getElementById(
-    "accountStatus"
-  );
-
+    document.getElementById("accountStatus");
 
   const forms =
-  document
-  .getElementById(
-    "authForms"
-  );
-
+    document.getElementById("authForms");
 
   const logoutButton =
-  document
-  .getElementById(
-    "logoutButton"
-  );
+    document.getElementById("logoutButton");
 
 
-  if(user){
+  if (user) {
 
     status.textContent =
-    "Logged in as " +
-    user.email;
+      "Logged in as " + user.email;
 
+    forms.style.display = "none";
 
-    forms.style.display =
-    "none";
+    logoutButton.style.display = "block";
 
-
-    logoutButton.style.display =
-    "block";
-
-
-  }else{
+  } else {
 
     status.textContent =
-    "Not logged in.";
+      "Not logged in.";
 
+    forms.style.display = "block";
 
-    forms.style.display =
-    "block";
-
-
-    logoutButton.style.display =
-    "none";
+    logoutButton.style.display = "none";
 
   }
 
 });
 
 
-async function loadOrders(){
+/* -------------------------
+   LOAD ORDERS
+------------------------- */
+
+async function loadOrders() {
 
   const list =
-  document
-  .getElementById(
-    "ordersList"
-  );
+    document.getElementById("ordersList");
 
 
-  if(!auth.currentUser){
+  if (!auth.currentUser) {
 
     list.innerHTML =
-    '<div class="message">Please log in to view your orders.</div>';
+      '<div class="message">Please log in to view your orders.</div>';
 
     return;
-
   }
 
 
   list.innerHTML =
-  '<div class="message">Loading orders...</div>';
+    '<div class="message">Loading orders...</div>';
 
 
-  try{
+  try {
 
     const snapshot =
-    await db
-    .collection("Orders")
-    .where(
-      "customerEmail",
-      "==",
-      auth.currentUser.email
-    )
-    .get();
+      await db
+        .collection("Orders")
+        .where(
+          "customerEmail",
+          "==",
+          auth.currentUser.email
+        )
+        .get();
 
 
-    if(snapshot.empty){
+    if (snapshot.empty) {
 
       list.innerHTML =
-      '<div class="message">No orders yet.</div>';
+        '<div class="message">No orders yet.</div>';
 
       return;
-
     }
 
 
     list.innerHTML = "";
 
 
-    snapshot.forEach(
-    function(doc){
+    snapshot.forEach(function(doc) {
 
-      const order =
-      doc.data();
-
+      const order = doc.data();
 
       const div =
-      document.createElement(
-        "div"
-      );
+        document.createElement("div");
+
+      div.className = "order";
 
 
-      div.className =
-      "order";
+      const product =
+        document.createElement("strong");
+
+      product.textContent =
+        order.product || "";
+
+      div.appendChild(product);
 
 
-      div.innerHTML = `
+      const amount =
+        document.createElement("p");
 
-        <strong>
-        ${order.product || ""}
-        </strong>
+      amount.textContent =
+        "Amount: GH₵" +
+        (order.amount || "");
 
-        <p>
-        Amount:
-        GH₵${order.amount || ""}
-        </p>
+      div.appendChild(amount);
 
-        <p>
-        Status:
-        ${order.status || ""}
-        </p>
 
-        <p class="small">
-        Reference:
-        ${order.orderId || ""}
-        </p>
+      const status =
+        document.createElement("p");
 
-      `;
+      status.textContent =
+        "Status: " +
+        (order.status || "");
+
+      div.appendChild(status);
+
+
+      const reference =
+        document.createElement("p");
+
+      reference.className = "small";
+
+      reference.textContent =
+        "Reference: " +
+        (order.orderId || "");
+
+      div.appendChild(reference);
 
 
       list.appendChild(div);
@@ -1471,17 +974,21 @@ async function loadOrders(){
     });
 
 
-  }catch(error){
+  } catch (error) {
 
     console.error(error);
 
     list.innerHTML =
-    '<div class="message error">Unable to load orders.</div>';
+      '<div class="message error">Unable to load orders.</div>';
 
   }
 
 }
 
+
+/* -------------------------
+   START HOME PAGE
+------------------------- */
 
 showPage("home");
 
