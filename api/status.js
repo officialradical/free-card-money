@@ -60,11 +60,31 @@ module.exports = async function handler(req, res) {
 
     const data = await response.json();
 
-    return json(
-      res,
-      response.status,
+    console.log(
+      "Moolre status response:",
       data
     );
+
+    const txstatus =
+      data &&
+      data.data &&
+      data.data.txstatus;
+
+    return json(res, response.status, {
+
+      status:
+        data.status,
+
+      message:
+        data.message || "",
+
+      txstatus:
+        txstatus,
+
+      data:
+        data.data || null
+
+    });
 
   } catch (error) {
 
