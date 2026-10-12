@@ -708,7 +708,12 @@ async function submitOrder() {
 
   } catch (error) {
     console.error("Order submission error:", error);
-
+    showMessage(
+      "Unable to submit your order. Please try again.",
+      "error"
+    );
+  }
+}
   
 async function checkPaymentReturn() {
 
